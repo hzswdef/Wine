@@ -1,0 +1,63 @@
+uuid: 5a4f1668-6e2e-41be-860a-a6569a876f33
+langcode: en
+status: true
+dependencies:
+  module:
+    - jsonapi_defaults
+    - shortcut
+third_party_settings:
+  jsonapi_defaults:
+    page_limit: 50
+id: shortcut_set--shortcut_set
+disabled: true
+path: shortcut_set/shortcut_set
+resourceType: shortcut_set--shortcut_set
+resourceFields:
+  uuid:
+    disabled: false
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+  langcode:
+    disabled: false
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+  status:
+    disabled: false
+    fieldName: status
+    publicName: status
+    enhancer:
+      id: ''
+  dependencies:
+    disabled: false
+    fieldName: dependencies
+    publicName: dependencies
+    enhancer:
+      id: ''
+  third_party_settings:
+    disabled: false
+    fieldName: third_party_settings
+    publicName: third_party_settings
+    enhancer:
+      id: ''
+  _core:
+    disabled: false
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+  id:
+    disabled: false
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+  label:
+    disabled: false
+    fieldName: label
+    publicName: label
+    enhancer:
+      id: ''
