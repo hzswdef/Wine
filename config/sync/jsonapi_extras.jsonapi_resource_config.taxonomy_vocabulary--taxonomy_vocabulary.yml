@@ -1,0 +1,81 @@
+uuid: e1c2667d-a347-43c9-8c30-e25a7b030b70
+langcode: en
+status: true
+dependencies:
+  module:
+    - jsonapi_defaults
+    - taxonomy
+third_party_settings:
+  jsonapi_defaults:
+    page_limit: 50
+id: taxonomy_vocabulary--taxonomy_vocabulary
+disabled: false
+path: taxonomy
+resourceType: Taxonomy
+resourceFields:
+  uuid:
+    disabled: false
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+  langcode:
+    disabled: true
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+  status:
+    disabled: false
+    fieldName: status
+    publicName: status
+    enhancer:
+      id: ''
+  dependencies:
+    disabled: true
+    fieldName: dependencies
+    publicName: dependencies
+    enhancer:
+      id: ''
+  third_party_settings:
+    disabled: true
+    fieldName: third_party_settings
+    publicName: third_party_settings
+    enhancer:
+      id: ''
+  _core:
+    disabled: true
+    fieldName: _core
+    publicName: _core
+    enhancer:
+      id: ''
+  name:
+    disabled: false
+    fieldName: name
+    publicName: name
+    enhancer:
+      id: ''
+  vid:
+    disabled: true
+    fieldName: vid
+    publicName: vid
+    enhancer:
+      id: ''
+  description:
+    disabled: true
+    fieldName: description
+    publicName: description
+    enhancer:
+      id: ''
+  weight:
+    disabled: true
+    fieldName: weight
+    publicName: weight
+    enhancer:
+      id: ''
+  new_revision:
+    disabled: true
+    fieldName: new_revision
+    publicName: new_revision
+    enhancer:
+      id: ''

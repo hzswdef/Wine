@@ -1,0 +1,90 @@
+@import "rsuite/dist/rsuite.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Nunito";
+    src:
+      local("Nunito"),
+      url(./assets/fonts/nunito/Nunito.ttf) format("woff2");
+  }
+}
+
+:root {
+  @apply font-default leading-normal font-normal text-slate-100 bg-custom-100;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply text-base;
+}
+
+html,
+body,
+body > #root {
+  @apply w-full h-full m-0 p-0 font-default;
+
+  a {
+    @apply no-underline;
+  }
+
+  img {
+    @apply select-none;
+  }
+
+  textarea:focus,
+  input:focus {
+    @apply outline-none;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  @apply w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply border-4 bg-transparent;
+  -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply border-4 bg-neutral-700;
+  -webkit-border-radius: 4px;
+}
+
+svg {
+  @apply text-slate-100;
+}
+
+h1 {
+  @apply text-4xl leading-[64px] font-bold;
+}
+
+h2 {
+  @apply text-3xl leading-[52px] font-bold;
+}
+
+h3 {
+  @apply text-2xl leading-[42px] font-bold;
+}
+
+h4 {
+  @apply text-xl leading-[40px] font-bold;
+}
+
+h5 {
+  @apply text-lg leading-[32px] font-bold;
+}
+
+h6 {
+  @apply text-xl leading-[24px] font-bold;
+}

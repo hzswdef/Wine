@@ -3,10 +3,14 @@
     "type": "project",
     "license": "GPL-2.0-or-later",
     "homepage": "https://www.drupal.org/project/drupal",
-    "support": {
-        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
-        "chat": "https://www.drupal.org/node/314178"
-    },
+    "authors": [
+        {
+            "name": "Valentyn Haletskyi (hzswdef)",
+            "homepage": "https://github.com/hzswdef",
+            "email": "hzswdef@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "repositories": [
         {
             "type": "composer",
@@ -15,7 +19,7 @@
     ],
     "require": {
         "composer/installers": "^2.0",
-        "cweagans/composer-patches": "~2.0",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.5",
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
@@ -24,7 +28,11 @@
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/jsonapi_extras": "^3.26",
-        "drush/drush": "^13.3"
+        "drupal/jsonapi_include": "^1.8",
+        "drupal/jsonapi_permission_access": "^1.0",
+        "drupal/paragraphs": "^1.18",
+        "drush/drush": "^13.3",
+        "mglaman/composer-drupal-lenient": "^1.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -38,12 +46,15 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
+            "mglaman/composer-drupal-lenient": true,
             "php-http/discovery": true,
             "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patches": {},
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
@@ -52,9 +63,9 @@
                 "[web-root]/example.gitignore": false,
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.md": false,
-                "[web-root]/robots.txt": false,
+                "[web-root]/robots.txt": "assets/scaffold/robots.txt",
                 "[web-root]/sites/README.txt": false,
-                "[web-root]/sites/development.services.yml": false,
+                "[web-root]/sites/development.services.yml": "assets/scaffold/development.services.yml",
                 "[web-root]/modules/README.txt": false,
                 "[web-root]/profiles/README.txt": false,
                 "[web-root]/themes/README.txt": false
@@ -88,6 +99,9 @@
             "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
+        },
+        "drupal-lenient": {
+            "allowed-list": []
         }
     }
 }

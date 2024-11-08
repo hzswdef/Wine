@@ -2,14 +2,9 @@ uuid: 1cc8f5b7-e2df-4a38-b3e0-aa6dd4aef031
 langcode: en
 status: true
 dependencies:
-  config:
-    - filter.format.basic_html
   module:
     - file
-    - filter
     - media
-    - search
-    - shortcut
     - system
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
@@ -19,8 +14,5 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
-  - 'access shortcuts'
   - 'delete own files'
-  - 'search content'
-  - 'use text format basic_html'
   - 'view media'

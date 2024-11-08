@@ -1,0 +1,36 @@
+uuid: 27105f87-54ba-465c-880e-940966aabd7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_code_language
+field_name: field_code_language
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: javascript
+      label: JavaScript
+    -
+      value: typescript
+      label: TypeScript
+    -
+      value: php
+      label: PHP
+    -
+      value: python
+      label: Python
+    -
+      value: json
+      label: JSON
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: 0926ce02-da99-4e94-8d99-14b081ad610b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.post.field_paragraphs
+    - field.field.node.post.field_summary
+    - node.type.post
+  module:
+    - user
+id: node.post.teaser
+targetEntityType: node
+bundle: post
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_paragraphs: true
+  field_summary: true

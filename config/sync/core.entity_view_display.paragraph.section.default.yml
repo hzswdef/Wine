@@ -1,0 +1,33 @@
+uuid: a03ac0e8-7695-41a7-9090-5c4b5de4ff27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_anchor_title
+    - field.field.paragraph.section.field_paragraphs
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_anchor_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }
