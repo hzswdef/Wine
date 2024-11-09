@@ -9,7 +9,11 @@ const Home = () => {
     updateTitle("Home");
   }, [updateTitle]);
 
-  return <Page page="home" title="Home">Home</Page>;
+  return (
+    <Page page="home" title="Home">
+      Home
+    </Page>
+  );
 };
 
 export default Home;

@@ -27,7 +27,7 @@ resourceFields:
     enhancer:
       id: ''
   revision_id:
-    disabled: false
+    disabled: true
     fieldName: revision_id
     publicName: revision_id
     enhancer:
@@ -93,7 +93,7 @@ resourceFields:
     enhancer:
       id: ''
   changed:
-    disabled: false
+    disabled: true
     fieldName: changed
     publicName: changed
     enhancer:
@@ -117,7 +117,7 @@ resourceFields:
     enhancer:
       id: ''
   path:
-    disabled: false
+    disabled: true
     fieldName: path
     publicName: path
     enhancer:

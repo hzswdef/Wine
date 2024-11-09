@@ -62,7 +62,7 @@ body > #root {
 }
 
 a {
-  @apply hover:text-blue-400 duration-100 transition-colors;
+  @apply transition-colors duration-100 hover:text-blue-400;
 }
 
 svg {

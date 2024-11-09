@@ -2,6 +2,7 @@ import Base from "@components/Base";
 import PostContextProvider from "@contexts/PostContextProvider";
 import Home from "@pages/home/Home";
 import Post from "@pages/post/Post";
+import Tags from "@pages/tags/Tags";
 import {
   createBrowserRouter,
   RouteObject,
@@ -25,6 +26,10 @@ const Router = () => {
               <Post />
             </PostContextProvider>
           ),
+        },
+        {
+          path: "/tags",
+          element: <Tags />,
         },
       ],
     },

@@ -16,7 +16,7 @@ import { clsx } from "clsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {Message} from "rsuite";
+import { Message } from "rsuite";
 
 const Post = () => {
   const { id } = useParams();

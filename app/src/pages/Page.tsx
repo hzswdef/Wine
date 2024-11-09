@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
 import { PropsWithChildren, useMemo, useState } from "react";
-import {Heading} from "rsuite";
+import { Heading } from "rsuite";
 
 interface PageProps extends PropsWithChildren {
   page: string;
