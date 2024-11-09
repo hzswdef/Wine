@@ -1,25 +1,23 @@
-uuid: 0d010598-76b9-4b0a-9881-738c122cead7
+uuid: e738b902-7f8c-4225-a3f7-88773d944efb
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.post
+    - taxonomy.vocabulary.tags
   module:
     - jsonapi_defaults
 third_party_settings:
   jsonapi_defaults:
-    default_include:
-      - 'tags,paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs.paragraphs'
     page_limit: 50
-id: node--post
+id: taxonomy_term--tags
 disabled: false
-path: post
-resourceType: 'Node - Post'
+path: taxonomy_term/tags
+resourceType: 'Taxonomy Term - Tags'
 resourceFields:
-  nid:
+  tid:
     disabled: false
-    fieldName: nid
-    publicName: nid
+    fieldName: tid
+    publicName: tid
     enhancer:
       id: ''
   uuid:
@@ -28,10 +26,10 @@ resourceFields:
     publicName: uuid
     enhancer:
       id: ''
-  vid:
+  revision_id:
     disabled: false
-    fieldName: vid
-    publicName: vid
+    fieldName: revision_id
+    publicName: revision_id
     enhancer:
       id: ''
   langcode:
@@ -40,28 +38,28 @@ resourceFields:
     publicName: langcode
     enhancer:
       id: ''
-  type:
-    disabled: false
-    fieldName: type
-    publicName: type
+  vid:
+    disabled: true
+    fieldName: vid
+    publicName: vid
     enhancer:
       id: ''
-  revision_timestamp:
+  revision_created:
     disabled: true
-    fieldName: revision_timestamp
-    publicName: revision_timestamp
+    fieldName: revision_created
+    publicName: revision_created
     enhancer:
       id: ''
-  revision_uid:
+  revision_user:
     disabled: true
-    fieldName: revision_uid
-    publicName: revision_uid
+    fieldName: revision_user
+    publicName: revision_user
     enhancer:
       id: ''
-  revision_log:
+  revision_log_message:
     disabled: true
-    fieldName: revision_log
-    publicName: revision_log
+    fieldName: revision_log_message
+    publicName: revision_log_message
     enhancer:
       id: ''
   status:
@@ -70,40 +68,34 @@ resourceFields:
     publicName: status
     enhancer:
       id: ''
-  uid:
+  name:
     disabled: false
-    fieldName: uid
-    publicName: uid
+    fieldName: name
+    publicName: name
     enhancer:
       id: ''
-  title:
+  description:
     disabled: false
-    fieldName: title
-    publicName: title
+    fieldName: description
+    publicName: description
     enhancer:
       id: ''
-  created:
+  weight:
     disabled: false
-    fieldName: created
-    publicName: created
+    fieldName: weight
+    publicName: weight
+    enhancer:
+      id: ''
+  parent:
+    disabled: false
+    fieldName: parent
+    publicName: parent
     enhancer:
       id: ''
   changed:
     disabled: false
     fieldName: changed
     publicName: changed
-    enhancer:
-      id: ''
-  promote:
-    disabled: true
-    fieldName: promote
-    publicName: promote
-    enhancer:
-      id: ''
-  sticky:
-    disabled: true
-    fieldName: sticky
-    publicName: sticky
     enhancer:
       id: ''
   default_langcode:
@@ -125,26 +117,8 @@ resourceFields:
     enhancer:
       id: ''
   path:
-    disabled: true
+    disabled: false
     fieldName: path
     publicName: path
-    enhancer:
-      id: ''
-  field_paragraphs:
-    disabled: false
-    fieldName: field_paragraphs
-    publicName: paragraphs
-    enhancer:
-      id: ''
-  field_summary:
-    disabled: false
-    fieldName: field_summary
-    publicName: summary
-    enhancer:
-      id: ''
-  field_tags:
-    disabled: false
-    fieldName: field_tags
-    publicName: tags
     enhancer:
       id: ''

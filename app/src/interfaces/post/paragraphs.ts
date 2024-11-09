@@ -8,7 +8,7 @@ interface Paragraph {
     | "Paragraph - Links";
   id: string;
   drupal_internal__id: number;
-  drupal_internal__revision_id: number;
+  parent_id: number;
   status: boolean;
   created: string;
 }
@@ -17,7 +17,11 @@ interface ParagraphWithAnchorTitle extends Paragraph {
   anchor_title?: string;
 }
 
-export type ParagraphsUnion = SectionParagraph | TextParagraph | CodeParagraph | LinksParagraph;
+export type ParagraphsUnion =
+  | SectionParagraph
+  | TextParagraph
+  | CodeParagraph
+  | LinksParagraph;
 
 export type Paragraphs = Array<ParagraphsUnion>;
 

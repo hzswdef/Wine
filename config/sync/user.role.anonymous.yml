@@ -2,8 +2,11 @@ uuid: 423213d9-4e3c-4950-b9d6-02df29fbcb3f
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.post
   module:
     - media
+    - node
     - system
 _core:
   default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
@@ -14,3 +17,4 @@ is_admin: false
 permissions:
   - 'access content'
   - 'view media'
+  - 'view post revisions'

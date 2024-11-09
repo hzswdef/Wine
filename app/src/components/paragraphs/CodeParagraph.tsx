@@ -5,6 +5,7 @@ import { CodeParagraph as ICodeParagraph } from "@interfaces/post/paragraphs";
 import CopyIcon from "@rsuite/icons/Copy";
 import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { isMobile } from "react-device-detect";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Heading, Popover, Whisper } from "rsuite";
@@ -18,9 +19,30 @@ const CodeParagraph = ({ paragraph }: CodeParagraphProps) => {
 
   return (
     <Paragraph paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
-      <Heading level={4} className="title mb-2 font-bold leading-6">
-        {paragraph.title}
-      </Heading>
+      {isMobile && (
+        <Whisper
+          placement="top"
+          controlId="code-paragraph-title"
+          trigger="click"
+          speaker={<Popover className="text-nowrap">{paragraph.title}</Popover>}
+        >
+          <Heading
+            level={4}
+            className="title mb-2 overflow-hidden overflow-ellipsis font-bold leading-6"
+          >
+            {paragraph.title}
+          </Heading>
+        </Whisper>
+      )}
+
+      {!isMobile && (
+        <Heading
+          level={4}
+          className="title mb-2 overflow-hidden overflow-ellipsis font-bold leading-6"
+        >
+          {paragraph.title}
+        </Heading>
+      )}
 
       <div className="code-block relative text-xs">
         <SyntaxHighlighter

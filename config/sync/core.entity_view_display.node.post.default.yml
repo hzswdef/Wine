@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.post.field_paragraphs
     - field.field.node.post.field_summary
+    - field.field.node.post.field_tags
     - node.type.post
   module:
     - entity_reference_revisions
@@ -30,6 +31,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   links:
     settings: {  }

@@ -1,9 +1,5 @@
 import { JsonApiResponse } from "@interfaces/api/response";
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 enum RequestMethods {
   GET = "GET",
@@ -18,7 +14,7 @@ abstract class Base {
       "Content-Type": "application/json",
     },
     params: {
-      jsonapi_include: 1
+      jsonapi_include: 1,
     },
   });
 

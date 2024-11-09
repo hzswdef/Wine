@@ -1,5 +1,5 @@
 import { Divider } from "rsuite";
 
-const TagHr = () => <Divider className="bg-custom-300 h-[2px]" />;
+const TagHr = () => <Divider className="h-[2px] bg-custom-300" />;
 
 export default TagHr;

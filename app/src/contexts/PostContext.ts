@@ -10,7 +10,7 @@ export interface Anchor {
 export interface PostContextInterface {
   anchors: {
     [key: Anchor["id"]]: Anchor;
-  }
+  };
   pushAnchor: (anchor: Anchor) => void;
 }
 

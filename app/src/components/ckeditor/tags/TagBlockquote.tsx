@@ -2,12 +2,13 @@ import { PropsWithChildren } from "react";
 import { Divider } from "rsuite";
 
 const TagBlockquote = ({ children }: PropsWithChildren) => (
-  <blockquote className="my-4 mx-2 pl-2 relative">
-    <Divider className="absolute left-0 top-0 w-1 rounded m-0 bg-purple-300" vertical />
+  <blockquote className="relative mx-2 my-4 pl-2">
+    <Divider
+      className="absolute left-0 top-0 m-0 w-1 rounded bg-purple-300"
+      vertical
+    />
 
-    <div className="blockquote-content ml-2">
-      {children}
-    </div>
+    <div className="blockquote-content ml-2">{children}</div>
   </blockquote>
 );
 

@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
+    "lint": "eslint . --fix",
     "format": "prettier . --write",
     "preview": "vite preview"
   },
@@ -20,9 +19,11 @@
     "moment": "^2.30.1",
     "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.1",
     "react-router-dom": "^6.28.0",
+    "react-share": "^5.1.0",
     "react-syntax-highlighter": "^15.6.1",
     "rsuite": "^5.74.1",
     "use-debounce": "^10.0.4"

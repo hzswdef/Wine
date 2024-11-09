@@ -1,11 +1,10 @@
 import { CKEditorBody } from "@interfaces/ckeditor";
 import { Paragraphs } from "@interfaces/post/paragraphs";
+import { Tags } from "@interfaces/post/tags";
 
 export interface Post {
   type: string;
   id: string;
-  drupal_internal__nid: number;
-  drupal_internal__vid: number;
   status: boolean;
   title: string;
   created: string;
@@ -13,6 +12,7 @@ export interface Post {
   uid: Uid;
   summary: CKEditorBody;
   paragraphs: Paragraphs;
+  tags: Tags;
 }
 
 export interface Uid {

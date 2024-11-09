@@ -2,6 +2,8 @@ uuid: f1515633-63e8-4757-bf91-429efab180c9
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.post
   module:
     - node
     - system
@@ -14,3 +16,4 @@ is_admin: null
 permissions:
   - 'access content'
   - 'access content overview'
+  - 'view post revisions'

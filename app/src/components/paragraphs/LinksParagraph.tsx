@@ -6,18 +6,23 @@ interface LinksParagraphProps {
   paragraph: ILinksParagraph;
 }
 
-const LinksParagraph = (props: LinksParagraphProps) => {
-  const { paragraph } = props;
-
-  return (
-    <Paragraph paragraph={paragraph} anchorTitle="Links">
-      {paragraph.field_links.map(link => (
-        <Link key={link.title} to={link.uri} replace>
-          {link.title}
-        </Link>
-      ))}
-    </Paragraph>
-  );
-};
+const LinksParagraph = ({ paragraph }: LinksParagraphProps) => (
+  <Paragraph paragraph={paragraph} anchorTitle="Links">
+    <ul className="list-disc pl-8">
+      <li>
+        {paragraph.field_links.map(link => (
+          <Link
+            key={link.title}
+            to={link.uri}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.title}
+          </Link>
+        ))}
+      </li>
+    </ul>
+  </Paragraph>
+);
 
 export default LinksParagraph;

@@ -8,6 +8,7 @@ parameters:
     enabled: true
     allowedOrigins:
       - "http://localhost:5173"
+      - "http://localhost:4173"
     exposedHeaders: false
     maxAge: false
 services:

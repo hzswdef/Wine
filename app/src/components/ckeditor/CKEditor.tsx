@@ -1,5 +1,6 @@
 import TagA from "@components/ckeditor/tags/TagA";
 import TagBlockquote from "@components/ckeditor/tags/TagBlockquote";
+import TagCode from "@components/ckeditor/tags/TagCode.tsx";
 import TagHr from "@components/ckeditor/tags/TagHr";
 import TagOl from "@components/ckeditor/tags/TagOl";
 import TagUl from "@components/ckeditor/tags/TagUl";
@@ -10,7 +11,6 @@ import parse, {
   HTMLReactParserOptions,
 } from "html-react-parser";
 import { useMemo, useState } from "react";
-import TagCode from "@components/ckeditor/tags/TagCode.tsx";
 
 interface CKEditorProps {
   body: string;

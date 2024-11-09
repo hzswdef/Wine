@@ -1,5 +1,5 @@
-import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { IconProps } from "@rsuite/icons/Icon";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 interface IconTextProps {
   text: string;

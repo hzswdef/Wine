@@ -14,7 +14,7 @@
 }
 
 :root {
-  @apply font-default leading-normal font-normal text-slate-100 bg-custom-100;
+  @apply bg-custom-100 font-default font-normal leading-normal text-slate-100;
 
   color-scheme: light dark;
   font-synthesis: none;
@@ -30,7 +30,7 @@ body {
 html,
 body,
 body > #root {
-  @apply w-full h-full m-0 p-0 font-default;
+  @apply m-0 h-full w-full p-0 font-default;
 
   a {
     @apply no-underline;
@@ -66,25 +66,25 @@ svg {
 }
 
 h1 {
-  @apply text-4xl leading-[64px] font-bold;
+  @apply text-3xl font-bold leading-10 xl:text-4xl xl:leading-16;
 }
 
 h2 {
-  @apply text-3xl leading-[52px] font-bold;
+  @apply text-2xl font-bold leading-9 xl:text-3xl xl:leading-12;
 }
 
 h3 {
-  @apply text-2xl leading-[42px] font-bold;
+  @apply text-xl font-bold leading-8 xl:text-2xl xl:leading-10;
 }
 
 h4 {
-  @apply text-xl leading-[40px] font-bold;
+  @apply text-lg font-bold leading-6 xl:text-xl xl:leading-10;
 }
 
 h5 {
-  @apply text-lg leading-[32px] font-bold;
+  @apply text-base font-bold xl:text-lg xl:leading-8;
 }
 
 h6 {
-  @apply text-xl leading-[24px] font-bold;
+  @apply text-base font-bold xl:text-lg xl:leading-7;
 }

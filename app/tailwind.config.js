@@ -1,5 +1,6 @@
 /** @type {import("tailwindcss").Config} */
 export default {
+  mode: "jit",
   content: ["./index.html", "./src/**/*.tsx"],
   theme: {
     extend: {
@@ -24,6 +25,14 @@ export default {
           400: "#1E1F22",
           500: "#111214",
         },
+      },
+      lineHeight: {
+        11: "2.75rem",
+        12: "3rem",
+        13: "3.25rem",
+        14: "3.5rem",
+        15: "3.75rem",
+        16: "4rem",
       },
       aspectRatio: {
         banner: "20 / 7",

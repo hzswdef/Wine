@@ -4,7 +4,9 @@ import Post from "@interfaces/post/post";
 import { AxiosResponse } from "axios";
 
 abstract class Posts extends Base {
-  public static async getPost(id: string): Promise<AxiosResponse<JsonApiResponse<Post>>> {
+  public static async getPost(
+    id: string,
+  ): Promise<AxiosResponse<JsonApiResponse<Post>>> {
     return await this._get<Post>(`/api/post/${id}`);
   }
 }

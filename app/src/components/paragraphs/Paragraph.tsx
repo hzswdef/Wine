@@ -31,12 +31,9 @@ const Paragraph = ({
   const anchorRef = useRef<HTMLDivElement | null>(null);
 
   // Remove the animation classes within 1600 ms after the anchor is pressed.
-  const anchorClickDebounce = useDebouncedCallback(
-    () => {
-      setAnchorIsClicked(false);
-    },
-    1600
-  );
+  const anchorClickDebounce = useDebouncedCallback(() => {
+    setAnchorIsClicked(false);
+  }, 1600);
 
   const onAnchorClick = () => {
     setAnchorIsClicked(!anchorIsClicked);

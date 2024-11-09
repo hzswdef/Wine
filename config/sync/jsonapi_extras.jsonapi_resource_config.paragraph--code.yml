@@ -57,7 +57,7 @@ resourceFields:
     enhancer:
       id: ''
   parent_id:
-    disabled: true
+    disabled: false
     fieldName: parent_id
     publicName: parent_id
     enhancer:

@@ -1,4 +1,7 @@
-import PostContext, { Anchor, PostContextInterface } from "@contexts/PostContext";
+import PostContext, {
+  Anchor,
+  PostContextInterface,
+} from "@contexts/PostContext";
 import { PropsWithChildren, useState } from "react";
 
 const PostContextProvider = ({ children }: PropsWithChildren) => {
