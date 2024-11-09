@@ -9,13 +9,13 @@ import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
 import Posts from "@http/clients/posts";
 import { Post as IPost } from "@interfaces/post/post";
+import Page from "@pages/Page";
 import PostInfoItem from "@pages/post/PostInfoItem";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
 import { clsx } from "clsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Heading } from "rsuite";
 
 const Post = () => {
   const { id } = useParams();
@@ -51,7 +51,7 @@ const Post = () => {
   }
 
   return (
-    <div className="post relative">
+    <Page page="post" className="post relative" title={post.title}>
       {anchors && (
         <div
           className={clsx(
@@ -76,10 +76,6 @@ const Post = () => {
       )}
 
       <div className="post-header">
-        <Heading level={1} className="post-title mb-8 font-bold xl:text-5xl">
-          {post.title}
-        </Heading>
-
         <div className="post-summary text my-4">
           <CKEditor body={post.summary.value} />
         </div>
@@ -117,7 +113,7 @@ const Post = () => {
 
         <Share title={post.title} />
       </div>
-    </div>
+    </Page>
   );
 };
 

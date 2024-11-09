@@ -1,4 +1,5 @@
 import useTitle from "@hooks/useTitle";
+import Page from "@pages/Page";
 import { useEffect } from "react";
 
 const Home = () => {
@@ -8,7 +9,7 @@ const Home = () => {
     updateTitle("Home");
   }, [updateTitle]);
 
-  return <div>Home</div>;
+  return <Page page="home" title="Home">Home</Page>;
 };
 
 export default Home;
