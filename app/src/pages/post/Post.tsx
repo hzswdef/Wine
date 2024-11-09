@@ -6,6 +6,7 @@ import TextParagraph from "@components/paragraphs/TextParagraph";
 import Tags from "@components/post/Tags";
 import Share from "@components/Share";
 import usePostContext from "@hooks/usePostContext";
+import useTitle from "@hooks/useTitle";
 import Posts from "@http/clients/posts";
 import { Post as IPost } from "@interfaces/post/post";
 import PostInfoItem from "@pages/post/PostInfoItem";
@@ -23,6 +24,8 @@ const Post = () => {
   const [post, setPost] = useState<IPost | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const updateTitle = useTitle();
+
   useEffect(() => {
     Posts.getPost(id ?? "")
       .then(response => {
@@ -32,6 +35,12 @@ const Post = () => {
         setError("Something went wrong. Please try again later.");
       });
   }, [id]);
+
+  useEffect(() => {
+    if (post) {
+      updateTitle(post.title);
+    }
+  }, [post, updateTitle]);
 
   if (!post) {
     if (!error) {
