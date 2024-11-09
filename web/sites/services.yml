@@ -1,0 +1,8 @@
+parameters:
+  cors.config:
+    enabled: true
+    allowedMethods:
+      - "GET"
+      - "OPTIONS"
+    allowedOrigins:
+      - "wine-demo.hzswdef.cloud"
