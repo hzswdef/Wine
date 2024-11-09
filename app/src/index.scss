@@ -61,6 +61,10 @@ body > #root {
   -webkit-border-radius: 4px;
 }
 
+a {
+  @apply hover:text-blue-400 duration-100 transition-colors;
+}
+
 svg {
   @apply text-slate-100;
 }
