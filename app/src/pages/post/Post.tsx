@@ -16,6 +16,7 @@ import { clsx } from "clsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {Message} from "rsuite";
 
 const Post = () => {
   const { id } = useParams();
@@ -46,7 +47,11 @@ const Post = () => {
     if (!error) {
       return <>Loading</>;
     } else {
-      return <>{error}</>;
+      return (
+        <Message type="error" showIcon>
+          {error}
+        </Message>
+      );
     }
   }
 
