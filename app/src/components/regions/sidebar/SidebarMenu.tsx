@@ -1,12 +1,24 @@
+import { Link } from "react-router-dom";
 import { Nav } from "rsuite";
 
 const SidebarMenu = () => {
   return (
-    <Nav className="!w-full" vertical style={{ width: 100 }}>
-      <Nav.Item eventKey="home">Home</Nav.Item>
-      <Nav.Item eventKey="news">Posts</Nav.Item>
-      <Nav.Item eventKey="products">Contacts</Nav.Item>
-      <Nav.Item eventKey="solutions">Author</Nav.Item>
+    <Nav vertical>
+      <Nav.Item as={Link} to="/" eventKey="home">
+        Home
+      </Nav.Item>
+      <Nav.Item as={Link} to="/posts" eventKey="posts">
+        Posts
+      </Nav.Item>
+      <Nav.Item as={Link} to="/tags" eventKey="tags">
+        Tags
+      </Nav.Item>
+      <Nav.Item as={Link} to="/contacts" eventKey="contacts">
+        Contacts
+      </Nav.Item>
+      <Nav.Item as={Link} to="/author" eventKey="author">
+        Author
+      </Nav.Item>
     </Nav>
   );
 };
