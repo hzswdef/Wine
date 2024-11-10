@@ -12,7 +12,7 @@ const Tags = ({ tags }: TagsProps) => {
       {tags &&
         tags.map(tag => (
           <Link
-            to={`/tags/${tag.id}`}
+            to={`/tag/${tag.name.toLowerCase()}`}
             key={tag.id}
             className={clsx(
               "post-tags-item mr-2 inline w-fit rounded-md bg-blue-600 px-2.5 py-1 hover:text-inherit",

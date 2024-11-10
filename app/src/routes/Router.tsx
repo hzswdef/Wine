@@ -1,7 +1,9 @@
 import Base from "@components/Base";
 import PostContextProvider from "@contexts/PostContextProvider";
+import NotFound from "@pages/error/NotFound";
 import Home from "@pages/home/Home";
 import Post from "@pages/post/Post";
+import Tag from "@pages/tag/Tag";
 import Tags from "@pages/tags/Tags";
 import {
   createBrowserRouter,
@@ -30,6 +32,14 @@ const Router = () => {
         {
           path: "/tags",
           element: <Tags />,
+        },
+        {
+          path: "/tag/:tag/:page?",
+          element: <Tag />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

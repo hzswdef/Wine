@@ -41,7 +41,7 @@ const Tags = () => {
           {tags.map(tag => (
             <Panel
               as={Link}
-              to={`/tag/${tag.id}`}
+              to={`/tag/${tag.name.toLowerCase()}`}
               shaded
               bordered
               bodyFill
