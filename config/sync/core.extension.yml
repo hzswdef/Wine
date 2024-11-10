@@ -26,6 +26,7 @@ module:
   jsonapi_defaults: 0
   jsonapi_extras: 0
   jsonapi_include: 0
+  jsonapi_response_alter: 0
   link: 0
   media: 0
   menu_link_content: 0
@@ -45,6 +46,7 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  wine_jsonapi_response_alter: 0
   views: 10
   paragraphs: 11
 theme:

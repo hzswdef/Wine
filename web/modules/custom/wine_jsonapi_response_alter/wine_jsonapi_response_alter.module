@@ -1,0 +1,42 @@
+<?php
+
+use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * @file
+ * Primary module hooks for wine_jsonapi_response_alter module.
+ */
+
+/**
+ * Implements hook_jsonapi_response_alter().
+ *
+ * Alter the "taxonomy_term--tags" resource response to add the "node_count"
+ * field to each term to display the count of nodes with that term.
+ */
+function wine_jsonapi_response_alter_jsonapi_response_alter(array &$jsonapi_response, Response $response): void {
+  if (str_contains($jsonapi_response["links"]["self"]["href"], "/taxonomy_term/tags")) {
+    foreach ($jsonapi_response["data"] as &$term) {
+      /** @var \Drupal\taxonomy\Entity\Term $termEntity */
+      $termEntity = \Drupal::entityTypeManager()
+        ->getStorage("taxonomy_term")
+        ->loadByProperties([
+          "uuid" => $term["id"],
+        ]);
+
+      if (empty($termEntity)) {
+        continue;
+      }
+
+      $termEntity = reset($termEntity);
+
+      $count = \Drupal::entityQuery("node")
+        ->accessCheck(FALSE)
+        ->condition("type", "post")
+        ->condition("field_tags", $term["drupal_internal__tid"])
+        ->count()
+        ->execute();
+
+      $term["node_count"] = $count;
+    }
+  }
+}

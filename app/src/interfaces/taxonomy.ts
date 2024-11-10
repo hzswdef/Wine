@@ -3,6 +3,7 @@ interface Taxonomy {
   id: string;
   name: string;
   description: string;
+  node_count: number;
 }
 
 export type TagsTaxonomy = Array<Taxonomy>;
