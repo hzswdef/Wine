@@ -1,7 +1,11 @@
 .page-tags {
   .tags-items {
-    .rs-panel .rs-panel-header {
-      @apply p-4;
+    .rs-panel {
+      @apply p-3.5;
+
+      .rs-panel-header {
+        @apply mb-1 p-0;
+      }
     }
   }
 }

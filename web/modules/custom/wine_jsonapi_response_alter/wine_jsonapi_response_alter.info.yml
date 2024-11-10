@@ -1,0 +1,7 @@
+name: 'Wine / JSON:API Response Alter'
+type: module
+description: 'Alter the JSON:API response for some requests.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - jsonapi_response_alter:jsonapi_response_alter
