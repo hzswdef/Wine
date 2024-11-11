@@ -1,7 +1,7 @@
 import "@pages/tags/Tags.scss";
 
 import useTitle from "@hooks/useTitle";
-import Taxonomy from "@http/clients/taxonomy";
+import TaxonomyClient from "@http/clients/taxonomyClient";
 import { TagsTaxonomy } from "@interfaces/taxonomy";
 import Page from "@pages/Page";
 import { clsx } from "clsx";
@@ -20,7 +20,7 @@ const Tags = () => {
   }, [updateTitle]);
 
   useEffect(() => {
-    Taxonomy.getTags()
+    TaxonomyClient.getTags()
       .then(response => {
         setTags(response.data.data);
       })

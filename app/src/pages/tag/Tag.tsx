@@ -1,9 +1,9 @@
 import CustomPagination from "@components/CustomPagination";
 import PostTeaser from "@components/post/PostTeaser";
 import useTitle from "@hooks/useTitle";
-import Posts from "@http/clients/posts";
+import PostsClient from "@http/clients/postsClient";
 import Post from "@interfaces/post/post";
-import NotFound from "@pages/error/NotFound.tsx";
+import NotFound from "@pages/error/NotFound";
 import Page from "@pages/Page";
 import { createRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,7 +30,7 @@ const Tag = () => {
 
       const offset: number = (currentPage - 1) * pageLimit;
 
-      Posts.getPostsByTag(tag, offset)
+      PostsClient.getPostsByTag(tag, offset)
         .then(response => {
           setPosts(response.data.data);
           setPostsTotal(response.data.meta.count);

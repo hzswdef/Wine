@@ -7,7 +7,7 @@ import Tags from "@components/post/Tags";
 import Share from "@components/Share";
 import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
-import Posts from "@http/clients/posts";
+import PostsClient from "@http/clients/postsClient";
 import { Post as IPost } from "@interfaces/post/post";
 import Page from "@pages/Page";
 import PostInfoItem from "@pages/post/PostInfoItem";
@@ -28,7 +28,7 @@ const Post = () => {
   const updateTitle = useTitle();
 
   useEffect(() => {
-    Posts.getPost(id ?? "")
+    PostsClient.getPost(id ?? "")
       .then(response => {
         setPost(response.data.data);
       })
