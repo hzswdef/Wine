@@ -13,7 +13,7 @@ import Page from "@pages/Page";
 import PostInfoItem from "@pages/post/PostInfoItem";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
 import { clsx } from "clsx";
-import moment from "moment";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "rsuite";
@@ -87,8 +87,8 @@ const Post = () => {
 
         <div className="post-info">
           <PostInfoItem
-            text={moment(post.created).format("MM/DD/YYYY")}
-            popover={<>{moment(post.created).format("LL")}</>}
+            text={dayjs(post.created).format("MM/DD/YYYY")}
+            popover={<>{dayjs(post.created).format("MMMM D, YYYY")}</>}
             icon={CalenderDateIcon}
           />
         </div>
@@ -114,7 +114,9 @@ const Post = () => {
       </div>
 
       <div className="post-footer">
-        {post.tags && <Tags tags={post.tags} />}
+        {post.tags && (
+          <Tags appearance="primary" className="my-4" tags={post.tags} />
+        )}
 
         <Share title={post.title} />
       </div>

@@ -23,6 +23,10 @@ const Router = () => {
           element: <Home />,
         },
         {
+          path: "/posts/:page?",
+          element: <Posts />,
+        },
+        {
           path: "/post/:id",
           element: (
             <PostContextProvider>

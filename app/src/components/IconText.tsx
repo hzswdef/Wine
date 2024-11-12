@@ -7,8 +7,8 @@ interface IconTextProps {
 }
 
 const IconText = ({ icon: Icon, text }: IconTextProps) => (
-  <div>
-    <Icon className="mr-1.5 h-4 w-4" />
+  <div className="flex items-center p-0.5">
+    <Icon className="my-0.5 mr-1.5 h-4 w-4" />
 
     <div className="inline text-xs">{text}</div>
   </div>
