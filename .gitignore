@@ -22,7 +22,9 @@ vendor/
 
 # Ignore configuration files that may contain sensitive information.
 /web/sites/*/settings.*.php
-/web/sites/*/services*.yml
+/web/sites/*/services.*.yml
+/web/sites/default/default.services.yml
+/web/sites/default/default.settings.php
 
 # Ignore paths that contain user-generated content.
 /web/sites/*/files
