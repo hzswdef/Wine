@@ -4,10 +4,9 @@ import useTitle from "@hooks/useTitle";
 import TaxonomyClient from "@http/clients/taxonomyClient";
 import { TagsTaxonomy } from "@interfaces/taxonomy";
 import Page from "@pages/Page";
-import { clsx } from "clsx";
+import TagsItem from "@pages/tags/TagsItem";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Message, Panel } from "rsuite";
+import { Message } from "rsuite";
 
 const Tags = () => {
   const updateTitle = useTitle();
@@ -40,23 +39,7 @@ const Tags = () => {
       {tags && (
         <div className="tags-items flex flex-wrap gap-4">
           {tags.map(tag => (
-            <Panel
-              as={Link}
-              to={`/tag/${tag.name.toLowerCase()}`}
-              shaded
-              bordered
-              bodyFill
-              key={tag.id}
-              header={tag.name}
-              className={clsx(
-                "tags-items-item basis-[calc(50%-0.5rem)] hover:text-inherit sm:basis-[calc(25%-1rem)]",
-                "transition-all duration-500 hover:-translate-y-1",
-              )}
-            >
-              <small>
-                <strong>{tag.node_count}</strong> publications
-              </small>
-            </Panel>
+            <TagsItem key={tag.id} tag={tag} />
           ))}
         </div>
       )}

@@ -1,4 +1,4 @@
-interface Taxonomy {
+export interface Taxonomy {
   type: "Taxonomy Term - Tags";
   id: string;
   name: string;

@@ -268,7 +268,7 @@ const Posts = () => {
 
       <div className="posts-items">
         {posts.map(post => (
-          <PostTeaser limitTags key={post.id} post={post} />
+          <PostTeaser key={post.id} limitTags post={post} />
         ))}
       </div>
 

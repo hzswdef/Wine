@@ -3,7 +3,7 @@ import "@components/paragraphs/CodeParagraph.scss";
 import Paragraph from "@components/paragraphs/Paragraph";
 import { CodeParagraph as ICodeParagraph } from "@interfaces/post/paragraphs";
 import CopyIcon from "@rsuite/icons/Copy";
-import { useState } from "react";
+import { memo, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { isMobile } from "react-device-detect";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -14,7 +14,7 @@ interface CodeParagraphProps {
   paragraph: ICodeParagraph;
 }
 
-const CodeParagraph = ({ paragraph }: CodeParagraphProps) => {
+const CodeParagraph = memo(({ paragraph }: CodeParagraphProps) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   return (
@@ -75,6 +75,6 @@ const CodeParagraph = ({ paragraph }: CodeParagraphProps) => {
       </div>
     </Paragraph>
   );
-};
+});
 
 export default CodeParagraph;

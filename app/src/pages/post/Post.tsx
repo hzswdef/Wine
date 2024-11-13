@@ -5,6 +5,7 @@ import SectionParagraph from "@components/paragraphs/SectionParagraph";
 import TextParagraph from "@components/paragraphs/TextParagraph";
 import Tags from "@components/post/Tags";
 import Share from "@components/Share";
+import dateFormat from "@helpers/dateFormat";
 import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
 import PostsClient from "@http/clients/postsClient";
@@ -13,8 +14,7 @@ import Page from "@pages/Page";
 import PostInfoItem from "@pages/post/PostInfoItem";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
 import { clsx } from "clsx";
-import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "rsuite";
 
@@ -26,6 +26,20 @@ const Post = () => {
   const [error, setError] = useState<string | null>(null);
 
   const updateTitle = useTitle();
+
+  const dateNumFormat = useMemo(() => {
+    if (post) {
+      return dateFormat(post.created, "MM/DD/YYYY");
+    }
+    return "";
+  }, [post]);
+
+  const dateStringFormat = useMemo(() => {
+    if (post) {
+      return dateFormat(post.created, "MMMM D, YYYY");
+    }
+    return "";
+  }, [post]);
 
   useEffect(() => {
     PostsClient.getPost(id ?? "")
@@ -87,8 +101,8 @@ const Post = () => {
 
         <div className="post-info">
           <PostInfoItem
-            text={dayjs(post.created).format("MM/DD/YYYY")}
-            popover={<>{dayjs(post.created).format("MMMM D, YYYY")}</>}
+            text={dateNumFormat}
+            popover={<>{dateStringFormat}</>}
             icon={CalenderDateIcon}
           />
         </div>

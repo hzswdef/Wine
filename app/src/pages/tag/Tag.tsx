@@ -7,16 +7,22 @@ import NotFound from "@pages/error/NotFound";
 import Page from "@pages/Page";
 import { createRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Message } from "rsuite";
 
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
+
+interface PostsState {
+  posts: Post[];
+  total: number;
+}
 
 const Tag = () => {
   const { tag, page } = useParams();
 
   const updateTitle = useTitle();
 
-  const [posts, setPosts] = useState<Post[] | null>(null);
-  const [postsTotal, setPostsTotal] = useState<number | null>(null);
+  const [posts, setPosts] = useState<PostsState | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const anchorRef = createRef<HTMLDivElement>();
 
@@ -32,12 +38,16 @@ const Tag = () => {
 
       PostsClient.getPostsByTag(tag, offset)
         .then(response => {
-          setPosts(response.data.data);
-          setPostsTotal(response.data.meta.count);
+          setPosts({
+            posts: response.data.data,
+            total: response.data.meta.count,
+          });
         })
-        .catch(() => {});
+        .catch(() => {
+          setError("Something went wrong. Please try again later.");
+        });
     }
-  }, [tag, page, currentPage]);
+  }, [tag, page, currentPage, updateTitle]);
 
   const onPageChange = (page: number) => {
     navigate(`/tag/${tag}/${page}`);
@@ -50,15 +60,19 @@ const Tag = () => {
     }
   };
 
-  if (!tag) {
-    return <>Error</>;
+  if (error) {
+    return (
+      <Message type="error" showIcon>
+        {error}
+      </Message>
+    );
   }
 
-  if (!posts && !postsTotal) {
+  if (!posts) {
     return <>Loading</>;
   }
 
-  if (posts?.length === 0) {
+  if (posts.posts.length === 0) {
     return <NotFound />;
   }
 
@@ -66,12 +80,11 @@ const Tag = () => {
     <Page page="tag" title={`"${tag}" Tag`} className="capitalize">
       <div ref={anchorRef} className="tag-anchor scroll-mt-48"></div>
 
-      {posts &&
-        posts.length > 0 &&
-        posts.map(post => <PostTeaser key={post.id} post={post} />)}
+      {posts.posts.length > 0 &&
+        posts.posts.map(post => <PostTeaser key={post.id} post={post} />)}
 
       <CustomPagination
-        total={postsTotal || 0}
+        total={posts.total || 0}
         activePage={currentPage}
         onPageChange={onPageChange}
       />
