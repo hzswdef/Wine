@@ -5,16 +5,16 @@ import SectionParagraph from "@components/paragraphs/SectionParagraph";
 import TextParagraph from "@components/paragraphs/TextParagraph";
 import Tags from "@components/post/Tags";
 import Share from "@components/Share";
+import dateFormat from "@helpers/dateFormat";
 import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
-import Posts from "@http/clients/posts";
+import PostsClient from "@http/clients/postsClient";
 import { Post as IPost } from "@interfaces/post/post";
 import Page from "@pages/Page";
 import PostInfoItem from "@pages/post/PostInfoItem";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
 import { clsx } from "clsx";
-import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "rsuite";
 
@@ -27,8 +27,22 @@ const Post = () => {
 
   const updateTitle = useTitle();
 
+  const dateNumFormat = useMemo(() => {
+    if (post) {
+      return dateFormat(post.created, "MM/DD/YYYY");
+    }
+    return "";
+  }, [post]);
+
+  const dateStringFormat = useMemo(() => {
+    if (post) {
+      return dateFormat(post.created, "MMMM D, YYYY");
+    }
+    return "";
+  }, [post]);
+
   useEffect(() => {
-    Posts.getPost(id ?? "")
+    PostsClient.getPost(id ?? "")
       .then(response => {
         setPost(response.data.data);
       })
@@ -87,8 +101,8 @@ const Post = () => {
 
         <div className="post-info">
           <PostInfoItem
-            text={moment(post.created).format("MM/DD/YYYY")}
-            popover={<>{moment(post.created).format("LL")}</>}
+            text={dateNumFormat}
+            popover={<>{dateStringFormat}</>}
             icon={CalenderDateIcon}
           />
         </div>
@@ -114,7 +128,9 @@ const Post = () => {
       </div>
 
       <div className="post-footer">
-        {post.tags && <Tags tags={post.tags} />}
+        {post.tags && (
+          <Tags appearance="primary" className="my-4" tags={post.tags} />
+        )}
 
         <Share title={post.title} />
       </div>

@@ -1,4 +1,5 @@
 import ShareIcon from "@rsuite/icons/ShareRound";
+import { memo } from "react";
 import { isMobile } from "react-device-detect";
 import {
   EmailIcon,
@@ -14,7 +15,7 @@ interface ShareProps {
   title: string;
 }
 
-const Share = ({ title }: ShareProps) => {
+const Share = memo(({ title }: ShareProps) => {
   const shareUrl = window.location.href;
 
   return (
@@ -44,6 +45,6 @@ const Share = ({ title }: ShareProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default Share;

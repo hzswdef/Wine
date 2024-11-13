@@ -5,15 +5,19 @@ import SidebarSearch from "@components/regions/sidebar/SidebarSearch";
 import CloseIcon from "@rsuite/icons/Close";
 import MenuIcon from "@rsuite/icons/Menu";
 import { clsx } from "clsx";
-import { useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Button, Divider } from "rsuite";
 
-const Sidebar = () => {
+const Sidebar = memo(() => {
   const [show, setShow] = useState<boolean>(false);
-  const classNames = clsx(
-    "sidebar h-full flex flex-col gap-3 basis-64 bg-custom-400 p-4",
-    isMobile && (show ? "h-screen absolute z-10 w-full" : "hidden"),
+  const classNames = useMemo(
+    () =>
+      clsx(
+        "sidebar h-full flex flex-col gap-3 basis-64 bg-custom-400 p-4",
+        isMobile && (show ? "h-screen absolute z-10 w-full" : "hidden"),
+      ),
+    [show],
   );
 
   return (
@@ -50,6 +54,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-};
+});
 
 export default Sidebar;

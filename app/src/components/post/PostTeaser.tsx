@@ -1,16 +1,27 @@
 import CKEditor from "@components/ckeditor/CKEditor";
+import Tags from "@components/post/Tags";
+import dateFormat from "@helpers/dateFormat";
 import Post from "@interfaces/post/post";
 import PostInfoItem from "@pages/post/PostInfoItem";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
-import moment from "moment/moment";
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Divider, Heading } from "rsuite";
 
 interface PostTeaserProps {
   post: Post;
+  limitTags?: boolean | number;
 }
 
-const PostTeaser = ({ post }: PostTeaserProps) => {
+const PostTeaser = memo(({ post, limitTags }: PostTeaserProps) => {
+  const dateNumFormat = useMemo(() => {
+    return dateFormat(post.created, "MM/DD/YYYY");
+  }, [post.created]);
+
+  const dateStringFormat = useMemo(() => {
+    return dateFormat(post.created, "MMMM D, YYYY");
+  }, [post.created]);
+
   return (
     <div className="post-teaser mb-6">
       <Link to={`/post/${post.id}`} replace>
@@ -21,15 +32,21 @@ const PostTeaser = ({ post }: PostTeaserProps) => {
         <CKEditor body={post.summary.processed} />
       </div>
 
-      <PostInfoItem
-        text={moment(post.created).format("MM/DD/YYYY")}
-        popover={<>{moment(post.created).format("LL")}</>}
-        icon={CalenderDateIcon}
-      />
+      <div className="post-teaser-footer flex flex-col gap-4 xl:flex-row">
+        <PostInfoItem
+          text={dateNumFormat}
+          popover={<>{dateStringFormat}</>}
+          icon={CalenderDateIcon}
+        />
+
+        {post.tags && (
+          <Tags appearance="secondary" limitTags={limitTags} tags={post.tags} />
+        )}
+      </div>
 
       <Divider />
     </div>
   );
-};
+});
 
 export default PostTeaser;

@@ -14,7 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
  * field to each term to display the count of nodes with that term.
  */
 function wine_jsonapi_response_alter_jsonapi_response_alter(array &$jsonapi_response, Response $response): void {
-  if (str_contains($jsonapi_response["links"]["self"]["href"], "/taxonomy_term/tags")) {
+  if (
+    isset($jsonapi_response["links"]["self"]["href"])
+    && is_string($jsonapi_response["links"]["self"]["href"])
+    && str_contains($jsonapi_response["links"]["self"]["href"], "/taxonomy_term/tags")
+  ) {
     foreach ($jsonapi_response["data"] as &$term) {
       /** @var \Drupal\taxonomy\Entity\Term $termEntity */
       $termEntity = \Drupal::entityTypeManager()

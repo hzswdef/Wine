@@ -6,7 +6,9 @@ import { clsx } from "clsx";
 import {
   MutableRefObject,
   PropsWithChildren,
+  useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -23,6 +25,8 @@ const Paragraph = ({
   paragraph,
   anchorTitle,
 }: PropsWithChildren<ParagraphProps>) => {
+  // @TODO Move the anchors somewhere else cause that logic here result in multiple re-renders.
+
   const { pushAnchor } = usePostContext();
 
   const [classNames, setClassNames] = useState<string>();
@@ -35,7 +39,7 @@ const Paragraph = ({
     setAnchorIsClicked(false);
   }, 1600);
 
-  const onAnchorClick = () => {
+  const onAnchorClick = useCallback(() => {
     setAnchorIsClicked(!anchorIsClicked);
 
     if (anchorRef?.current) {
@@ -46,8 +50,9 @@ const Paragraph = ({
     }
 
     anchorClickDebounce();
-  };
+  }, [anchorClickDebounce, anchorIsClicked]);
 
+  // @TODO Investigate the issue. Probably should rewrite with useCallback.
   useEffect(() => {
     if (anchorTitle && anchorRef.current) {
       pushAnchor({
@@ -57,12 +62,15 @@ const Paragraph = ({
         onClick: onAnchorClick,
       });
     }
-  }, [anchorRef, anchorTitle, paragraph.id]);
+  }, [anchorRef, anchorTitle, onAnchorClick, paragraph.id]);
 
-  const paragraphTypeName = paragraph.type.split(" ").pop();
-  const mainClassNames = clsx(
-    `paragraph-${paragraphTypeName}`,
-    "my-6 scroll-mt-48",
+  const paragraphTypeName = useMemo(
+    () => paragraph.type.split(" ").pop(),
+    [paragraph.type],
+  );
+  const mainClassNames = useMemo(
+    () => clsx(`paragraph-${paragraphTypeName}`, "my-6 scroll-mt-48"),
+    [paragraphTypeName],
   );
 
   // Do animation things on anchor click.

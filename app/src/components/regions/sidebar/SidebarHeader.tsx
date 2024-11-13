@@ -1,7 +1,8 @@
 import LogoImage from "@assets/images/logo.png";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
-const SidebarHeader = () => (
+const SidebarHeader = memo(() => (
   <div className="info flex items-center gap-3">
     <div className="logo">
       <Link to="/" replace>
@@ -25,6 +26,6 @@ const SidebarHeader = () => (
       </div>
     </div>
   </div>
-);
+));
 
 export default SidebarHeader;

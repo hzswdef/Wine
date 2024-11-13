@@ -3,7 +3,7 @@ import { JsonApiResponse } from "@interfaces/api/response";
 import { TagsTaxonomy } from "@interfaces/taxonomy";
 import { AxiosResponse } from "axios";
 
-abstract class Taxonomy extends Base {
+abstract class TaxonomyClient extends Base {
   public static async getTags(): Promise<
     AxiosResponse<JsonApiResponse<TagsTaxonomy>>
   > {
@@ -11,4 +11,4 @@ abstract class Taxonomy extends Base {
   }
 }
 
-export default Taxonomy;
+export default TaxonomyClient;

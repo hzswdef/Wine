@@ -10,7 +10,7 @@ import parse, {
   domToReact,
   HTMLReactParserOptions,
 } from "html-react-parser";
-import { useMemo, useState } from "react";
+import { memo, useMemo } from "react";
 
 interface CKEditorProps {
   body: string;
@@ -44,18 +44,12 @@ const parserOptions: HTMLReactParserOptions = {
   },
 };
 
-const CKEditor = (props: CKEditorProps) => {
-  const { body } = props;
-
-  const [parsedBody, setParsedBody] = useState<ReturnType<
-    typeof domToReact
-  > | null>(null);
-
-  useMemo(() => {
-    setParsedBody(parse(body, parserOptions));
+const CKEditor = memo(({ body }: CKEditorProps) => {
+  const parsedBody = useMemo(() => {
+    return parse(body, parserOptions);
   }, [body]);
 
-  return <>{parsedBody && <div>{parsedBody}</div>}</>;
-};
+  return <div>{parsedBody}</div>;
+});
 
 export default CKEditor;
