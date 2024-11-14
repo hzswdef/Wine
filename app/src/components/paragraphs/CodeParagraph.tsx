@@ -6,8 +6,8 @@ import CopyIcon from "@rsuite/icons/Copy";
 import { memo, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { isMobile } from "react-device-detect";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import a11yDark from "react-syntax-highlighter/dist/esm/styles/prism/a11y-dark";
 import { Heading, Popover, Whisper } from "rsuite";
 
 interface CodeParagraphProps {
