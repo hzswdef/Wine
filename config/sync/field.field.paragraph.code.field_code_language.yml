@@ -12,7 +12,7 @@ field_name: field_code_language
 entity_type: paragraph
 bundle: code
 label: Language
-description: ''
+description: 'Before adding new language to the <strong>Code</strong> Paragraph Type you must register it on the FrontEnd side.'
 required: true
 translatable: false
 default_value: {  }

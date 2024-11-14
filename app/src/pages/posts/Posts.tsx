@@ -26,6 +26,7 @@ enum SortOptionsEnum {
   "asc" = "title",
   "desc" = "-title",
   "recent" = "-changed",
+  "oldest" = "created",
 }
 
 const sortOptions: InputItemDataType<string | number>[] = [
@@ -40,6 +41,10 @@ const sortOptions: InputItemDataType<string | number>[] = [
   {
     label: "Recent",
     value: SortOptionsEnum.recent,
+  },
+  {
+    label: "Oldest",
+    value: SortOptionsEnum.oldest,
   },
 ];
 
