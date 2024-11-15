@@ -34,6 +34,7 @@
         "drupal/jsonapi_search_api": "^1.0@RC",
         "drupal/paragraphs": "^1.18",
         "drupal/search_api_solr": "^4.3",
+        "drupal/subrequests": "^3.0",
         "drush/drush": "^13.3",
         "mglaman/composer-drupal-lenient": "^1.0"
     },

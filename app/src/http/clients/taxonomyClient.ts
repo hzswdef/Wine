@@ -7,7 +7,9 @@ abstract class TaxonomyClient extends Base {
   public static async getTags(): Promise<
     AxiosResponse<JsonApiResponse<TagsTaxonomy>>
   > {
-    return await this._get<TagsTaxonomy>("/api/taxonomy_term/tags");
+    return await this._get<JsonApiResponse<TagsTaxonomy>>(
+      "/api/taxonomy_term/tags",
+    );
   }
 }
 

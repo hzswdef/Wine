@@ -7,6 +7,7 @@ dependencies:
   module:
     - media
     - node
+    - subrequests
     - system
 _core:
   default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
@@ -16,5 +17,6 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'issue subrequests'
   - 'view media'
   - 'view post revisions'
