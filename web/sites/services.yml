@@ -3,6 +3,10 @@ parameters:
     enabled: true
     allowedMethods:
       - "GET"
+      - "POST"
       - "OPTIONS"
+    allowedHeaders:
+      - "Accept"
+      - "Content-Type"
     allowedOrigins:
-      - "wine-demo.hzswdef.cloud"
+      - "hzswdef-wine.netlify.app"

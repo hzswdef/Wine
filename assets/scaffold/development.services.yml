@@ -6,11 +6,16 @@ parameters:
   http.response.debug_cacheability_headers: true
   cors.config:
     enabled: true
+    allowedMethods:
+      - "GET"
+      - "POST"
+      - "OPTIONS"
+    allowedHeaders:
+      - "Accept"
+      - "Content-Type"
     allowedOrigins:
       - "http://localhost:5173"
       - "http://localhost:4173"
-    exposedHeaders: false
-    maxAge: false
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory
