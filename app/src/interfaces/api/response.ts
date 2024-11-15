@@ -4,3 +4,13 @@ export interface JsonApiResponse<T> {
     count: number;
   };
 }
+
+export interface SubrequestsResponse {
+  [key: string]: {
+    headers: {
+      [key: string]: string[],
+      status: string[],
+    },
+    body: string;
+  }
+}

@@ -2,8 +2,10 @@ import CustomPagination from "@components/CustomPagination";
 import PostTeaser from "@components/post/PostTeaser";
 import useTitle from "@hooks/useTitle";
 import PostsClient from "@http/clients/postsClient";
-import TaxonomyClient from "@http/clients/taxonomyClient";
+import SubrequestsClient from "@http/clients/subrequestsClient";
+import { JsonApiResponse } from "@interfaces/api/response";
 import Post from "@interfaces/post/post";
+import { Taxonomy } from "@interfaces/taxonomy";
 import Page from "@pages/Page";
 import { useCallback, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -14,13 +16,20 @@ import { useDebounce } from "use-debounce";
 
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
+interface PageState {
+  posts: Post[];
+  postsTotal: number;
+  tags: Tag[];
+  initialized: boolean;
+}
+
 interface FormData {
   title: string | null;
   tags: string | null;
   sort: SortOptionsEnum | null;
 }
 
-type Tags = InputItemDataType<string | number>[];
+type Tag = InputItemDataType<string | number>;
 
 enum SortOptionsEnum {
   "asc" = "title",
@@ -68,9 +77,12 @@ const Posts = () => {
   const [searchTextDebounce] = useDebounce(watch("title", null), 500);
 
   const [currentPage, setCurrentPage] = useState<number>(page ? +page : 1);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [postsTotal, setPostsTotal] = useState<number | null>(null);
-  const [tags, setTags] = useState<Tags | null>(null);
+  const [pageState, setPageState] = useState<PageState>({
+    posts: [],
+    postsTotal: 0,
+    tags: [],
+    initialized: false,
+  });
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
@@ -96,6 +108,10 @@ const Posts = () => {
   }, [updateTitle]);
 
   useEffect(() => {
+    if (!pageState.initialized) {
+      return;
+    }
+
     let params = {};
     let offset: number;
 
@@ -139,40 +155,53 @@ const Posts = () => {
     }
 
     PostsClient.getPosts(offset, params)
-      .then(response => {
-        setPosts(response.data.data);
-        setPostsTotal(response.data.meta.count);
+      .then(({ data }) => {
+        setPageState({
+          ...pageState,
+          posts: data.data,
+          postsTotal: data.meta.count,
+        });
       })
       .catch(() => {
         setError("Something went wrong. Please try again later.");
       });
-  }, [
-    currentPage,
-    searchTextDebounce,
-    searchTagsWatch,
-    searchSortWatch,
-    navigate,
-    onPageChange,
-  ]);
+  }, [currentPage, searchTextDebounce, searchTagsWatch, searchSortWatch, pageState.initialized, onPageChange]);
 
   useEffect(() => {
-    TaxonomyClient.getTags()
+    SubrequestsClient.getPostsAndAllTags()
       .then(response => {
-        setTags(
-          response.data.data.map(tag => {
+        if (
+          response.data.requestPosts.headers.status[0] !== "200"
+          || response.data.requestTags.headers.status[0] !== "200"
+        ) {
+          return setError("Something went wrong. Please try again later.");
+        }
+
+        const posts: JsonApiResponse<Post[]> = JSON.parse(
+          response.data.requestPosts.body,
+        );
+        const tags: JsonApiResponse<Taxonomy[]> = JSON.parse(
+          response.data.requestTags.body,
+        );
+
+        setPageState({
+          posts: posts.data,
+          postsTotal: posts.meta.count,
+          tags: tags.data.map(tag => {
             return {
               label: tag.name,
               value: tag.name.toLowerCase(),
             };
           }),
-        );
+          initialized: true,
+        });
       })
       .catch(() => {
         setError("Something went wrong. Please try again later.");
       });
   }, []);
 
-  if (error && (!posts || !tags)) {
+  if (error) {
     return (
       <Message type="error" showIcon>
         {error}
@@ -180,7 +209,7 @@ const Posts = () => {
     );
   }
 
-  if (!posts || !tags) {
+  if (!pageState.initialized) {
     return <>Loading</>;
   }
 
@@ -226,7 +255,7 @@ const Posts = () => {
               render={({ field }) => (
                 <InputPicker
                   className="w-full"
-                  data={tags}
+                  data={pageState.tags}
                   id={field.name}
                   value={field.value ?? ""}
                   onChange={value => field.onChange(value)}
@@ -260,7 +289,7 @@ const Posts = () => {
 
         <div className="header-info mb-4">
           <div className="posts-count">
-            <small>Results:</small> <strong>{postsTotal}</strong>
+            <small>Results:</small> <strong>{pageState.postsTotal}</strong>
           </div>
         </div>
 
@@ -272,14 +301,14 @@ const Posts = () => {
       </div>
 
       <div className="posts-items">
-        {posts.map(post => (
+        {pageState.posts.map(post => (
           <PostTeaser key={post.id} limitTags post={post} />
         ))}
       </div>
 
       <div className="posts-footer">
         <CustomPagination
-          total={postsTotal || 0}
+          total={pageState.postsTotal}
           activePage={currentPage}
           onPageChange={onPageChange}
         />

@@ -1,8 +1,8 @@
-import { JsonApiResponse } from "@interfaces/api/response";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 enum RequestMethods {
   GET = "GET",
+  POST = "POST",
 }
 
 abstract class Base {
@@ -13,16 +13,14 @@ abstract class Base {
     headers: {
       "Content-Type": "application/json",
     },
-    params: {
-      jsonapi_include: 1,
-    },
   });
 
   private static async request<T>(
     method: RequestMethods,
     endpoint: string,
     config: AxiosRequestConfig | null = null,
-  ): Promise<AxiosResponse<JsonApiResponse<T>>> {
+    data?: object,
+  ): Promise<AxiosResponse<T>> {
     let request: AxiosRequestConfig = {
       method: method,
       url: endpoint,
@@ -35,14 +33,36 @@ abstract class Base {
       };
     }
 
-    return await this.http.request<JsonApiResponse<T>>(request);
+    if (request.params === undefined) {
+      request.params = {};
+    }
+
+    if (request.url === "/subrequests") {
+      request.params._format = "json";
+    } else {
+      request.params.jsonapi_include = 1;
+    }
+
+    if (data) {
+      request.data = data;
+    }
+
+    return await this.http.request<T>(request);
   }
 
   protected static async _get<T>(
     endpoint: string,
     config: AxiosRequestConfig | null = null,
-  ): Promise<AxiosResponse<JsonApiResponse<T>>> {
+  ): Promise<AxiosResponse<T>> {
     return await this.request<T>(RequestMethods.GET, endpoint, config);
+  }
+
+  protected static async _post<T>(
+    endpoint: string,
+    config: AxiosRequestConfig | null = null,
+    data: object,
+  ): Promise<AxiosResponse<T>> {
+    return await this.request<T>(RequestMethods.POST, endpoint, config, data);
   }
 }
 
