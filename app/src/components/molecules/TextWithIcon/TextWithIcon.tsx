@@ -6,7 +6,7 @@ interface IconTextProps {
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGElement>>;
 }
 
-const IconText = memo(({ icon: Icon, text }: IconTextProps) => (
+const TextWithIcon = memo(({ icon: Icon, text }: IconTextProps) => (
   <div className="flex items-center p-0.5">
     <Icon className="my-0.5 mr-1.5 h-4 w-4" />
 
@@ -14,4 +14,4 @@ const IconText = memo(({ icon: Icon, text }: IconTextProps) => (
   </div>
 ));
 
-export default IconText;
+export default TextWithIcon;

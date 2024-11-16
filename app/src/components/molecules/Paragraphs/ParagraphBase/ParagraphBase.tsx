@@ -1,7 +1,7 @@
-import "@components/paragraphs/Paragraph.scss";
+import "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.scss";
 
-import usePostContext from "@hooks/usePostContext";
-import { ParagraphsUnion } from "@interfaces/post/paragraphs";
+import usePostContext from "@hooks/usePostContext.ts";
+import { ParagraphsUnion } from "@interfaces/post/paragraphs.ts";
 import { clsx } from "clsx";
 import {
   MutableRefObject,
@@ -20,7 +20,7 @@ interface ParagraphProps {
   anchorTitle?: string;
 }
 
-const Paragraph = ({
+const ParagraphBase = ({
   children,
   paragraph,
   anchorTitle,
@@ -96,4 +96,4 @@ const Paragraph = ({
   );
 };
 
-export default Paragraph;
+export default ParagraphBase;

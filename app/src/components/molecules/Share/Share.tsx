@@ -12,10 +12,10 @@ import {
 import { Button, Heading } from "rsuite";
 
 interface ShareProps {
-  title: string;
+  shareTitle: string;
 }
 
-const Share = memo(({ title }: ShareProps) => {
+const Share = memo(({ shareTitle }: ShareProps) => {
   const shareUrl = window.location.href;
 
   return (
@@ -31,15 +31,15 @@ const Share = memo(({ title }: ShareProps) => {
           </Button>
         )}
 
-        <TelegramShareButton url={shareUrl} title={title}>
+        <TelegramShareButton url={shareUrl} title={shareTitle}>
           <TelegramIcon size={40} round />
         </TelegramShareButton>
 
-        <TwitterShareButton url={shareUrl} title={title}>
+        <TwitterShareButton url={shareUrl} title={shareTitle}>
           <XIcon size={40} round />
         </TwitterShareButton>
 
-        <EmailShareButton url={shareUrl} subject={title}>
+        <EmailShareButton url={shareUrl} subject={shareTitle}>
           <EmailIcon size={40} round />
         </EmailShareButton>
       </div>

@@ -53,3 +53,6 @@ vendor/
 /.ddev/.env
 /.hash-salt
 /.secrets
+
+# Other
+/.cache/

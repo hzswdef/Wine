@@ -1,4 +1,4 @@
-import CustomPagination from "@components/CustomPagination";
+import Pagination from "@components/molecules/Pagination/Pagination.tsx";
 import PostTeaser from "@components/post/PostTeaser";
 import useTitle from "@hooks/useTitle";
 import PostsClient from "@http/clients/postsClient";
@@ -83,7 +83,7 @@ const Tag = () => {
       {posts.posts.length > 0 &&
         posts.posts.map(post => <PostTeaser key={post.id} post={post} />)}
 
-      <CustomPagination
+      <Pagination
         total={posts.total || 0}
         activePage={currentPage}
         onPageChange={onPageChange}

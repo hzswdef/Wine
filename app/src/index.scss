@@ -24,17 +24,13 @@
 }
 
 body {
-  @apply text-base;
+  @apply text-base text-white text-opacity-90;
 }
 
 html,
 body,
 body > #root {
   @apply m-0 h-full w-full p-0 font-default;
-
-  a {
-    @apply no-underline;
-  }
 
   img {
     @apply select-none;
@@ -62,7 +58,7 @@ body > #root {
 }
 
 a {
-  @apply transition-colors duration-100 hover:text-blue-400;
+  @apply transition-colors duration-100 hover:text-blue-400 hover:no-underline;
 }
 
 svg {

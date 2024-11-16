@@ -1,8 +1,8 @@
-import CodeParagraph from "@components/paragraphs/CodeParagraph";
-import LinksParagraph from "@components/paragraphs/LinksParagraph";
-import Paragraph from "@components/paragraphs/Paragraph";
-import TextParagraph from "@components/paragraphs/TextParagraph";
-import { SectionParagraph as ISectionParagraph } from "@interfaces/post/paragraphs";
+import CodeParagraph from "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph.tsx";
+import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph.tsx";
+import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.tsx";
+import TextParagraph from "@components/molecules/Paragraphs/TextParagraph/TextParagraph.tsx";
+import { SectionParagraph as ISectionParagraph } from "@interfaces/post/paragraphs.ts";
 import { memo } from "react";
 
 interface SectionParagraphProps {
@@ -10,7 +10,7 @@ interface SectionParagraphProps {
 }
 
 const SectionParagraph = memo(({ paragraph }: SectionParagraphProps) => (
-  <Paragraph paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
+  <ParagraphBase paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
     {paragraph.paragraphs.map(paragraph => {
       switch (paragraph.type) {
         case "Paragraph - Section":
@@ -23,7 +23,7 @@ const SectionParagraph = memo(({ paragraph }: SectionParagraphProps) => (
           return <LinksParagraph key={paragraph.id} paragraph={paragraph} />;
       }
     })}
-  </Paragraph>
+  </ParagraphBase>
 ));
 
 export default SectionParagraph;

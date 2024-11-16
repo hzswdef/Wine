@@ -96,4 +96,10 @@ export default tseslint.config(
       "path-alias/no-relative": "error",
     },
   },
+  {
+    "files": ["**/*.stories.tsx"],
+    "rules": {
+      "react-hooks/rules-of-hooks": "off"
+    }
+  }
 );

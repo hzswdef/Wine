@@ -1,16 +1,16 @@
 import { memo, useMemo } from "react";
-import { Pagination } from "rsuite";
+import { Pagination as RSuitePagination } from "rsuite";
 
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
-interface CustomPaginationProps {
+export interface PaginationProps {
   total: number;
   activePage: number;
   onPageChange: (page: number) => void;
 }
 
-const CustomPagination = memo(
-  ({ total, activePage, onPageChange }: CustomPaginationProps) => {
+const Pagination = memo(
+  ({ total, activePage, onPageChange }: PaginationProps) => {
     const isSinglePage: boolean = useMemo(() => {
       return total <= pageLimit;
     }, [total]);
@@ -20,7 +20,7 @@ const CustomPagination = memo(
     }
 
     return (
-      <Pagination
+      <RSuitePagination
         className="justify-center"
         prev
         next
@@ -36,4 +36,4 @@ const CustomPagination = memo(
   },
 );
 
-export default CustomPagination;
+export default Pagination;

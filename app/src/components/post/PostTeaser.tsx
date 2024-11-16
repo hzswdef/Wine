@@ -1,4 +1,4 @@
-import CKEditor from "@components/ckeditor/CKEditor";
+import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody";
 import Tags from "@components/post/Tags";
 import dateFormat from "@helpers/dateFormat";
 import Post from "@interfaces/post/post";
@@ -29,7 +29,7 @@ const PostTeaser = memo(({ post, limitTags }: PostTeaserProps) => {
       </Link>
 
       <div className="post-summary mb-3 mt-2">
-        <CKEditor body={post.summary.processed} />
+        <CKEditorBody body={post.summary.processed} />
       </div>
 
       <div className="post-teaser-footer flex flex-col gap-4 xl:flex-row">

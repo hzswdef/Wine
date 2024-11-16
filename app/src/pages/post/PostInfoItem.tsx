@@ -1,4 +1,4 @@
-import IconText from "@components/IconText";
+import TextWithIcon from "@components/molecules/TextWithIcon/TextWithIcon.tsx";
 import { IconProps } from "@rsuite/icons/Icon";
 import {
   ForwardRefExoticComponent,
@@ -23,7 +23,7 @@ const PostInfoItem = memo(({ text, popover, icon }: PostInfoItemProps) => (
       speaker={<Popover className="text-xs">{popover}</Popover>}
     >
       <>
-        <IconText text={text} icon={icon} />
+        <TextWithIcon text={text} icon={icon} />
       </>
     </Whisper>
   </div>

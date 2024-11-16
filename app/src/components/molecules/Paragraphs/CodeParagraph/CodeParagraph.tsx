@@ -1,6 +1,6 @@
-import "@components/paragraphs/CodeParagraph.scss";
+import "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph.scss";
 
-import Paragraph from "@components/paragraphs/Paragraph";
+import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase";
 import { CodeParagraph as ICodeParagraph } from "@interfaces/post/paragraphs";
 import CopyIcon from "@rsuite/icons/Copy";
 import { memo, useState } from "react";
@@ -18,7 +18,7 @@ const CodeParagraph = memo(({ paragraph }: CodeParagraphProps) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   return (
-    <Paragraph paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
+    <ParagraphBase paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
       {isMobile && (
         <Whisper
           placement="top"
@@ -73,7 +73,7 @@ const CodeParagraph = memo(({ paragraph }: CodeParagraphProps) => {
           </div>
         </Whisper>
       </div>
-    </Paragraph>
+    </ParagraphBase>
   );
 });
 

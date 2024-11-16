@@ -1,10 +1,9 @@
-import CKEditor from "@components/ckeditor/CKEditor";
-import CodeParagraph from "@components/paragraphs/CodeParagraph";
-import LinksParagraph from "@components/paragraphs/LinksParagraph";
-import SectionParagraph from "@components/paragraphs/SectionParagraph";
-import TextParagraph from "@components/paragraphs/TextParagraph";
+import CodeParagraph from "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph.tsx";
+import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph.tsx";
+import SectionParagraph from "@components/molecules/Paragraphs/SectionParagraph/SectionParagraph.tsx";
+import TextParagraph from "@components/molecules/Paragraphs/TextParagraph/TextParagraph.tsx";
 import Tags from "@components/post/Tags";
-import Share from "@components/Share";
+import Share from "@components/molecules/Share/Share.tsx";
 import dateFormat from "@helpers/dateFormat";
 import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
@@ -17,6 +16,7 @@ import { clsx } from "clsx";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "rsuite";
+import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody.tsx";
 
 const Post = () => {
   const { id } = useParams();
@@ -96,7 +96,7 @@ const Post = () => {
 
       <div className="post-header">
         <div className="post-summary text my-4">
-          <CKEditor body={post.summary.value} />
+          <CKEditorBody body={post.summary.value} />
         </div>
 
         <div className="post-info">
@@ -132,7 +132,7 @@ const Post = () => {
           <Tags appearance="primary" className="my-4" tags={post.tags} />
         )}
 
-        <Share title={post.title} />
+        <Share shareTitle={post.title} />
       </div>
     </Page>
   );

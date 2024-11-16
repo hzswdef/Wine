@@ -1,4 +1,4 @@
-import CustomPagination from "@components/CustomPagination";
+import Pagination from "@components/molecules/Pagination/Pagination.tsx";
 import PostTeaser from "@components/post/PostTeaser";
 import useTitle from "@hooks/useTitle";
 import PostsClient from "@http/clients/postsClient";
@@ -307,7 +307,7 @@ const Posts = () => {
       </div>
 
       <div className="posts-footer">
-        <CustomPagination
+        <Pagination
           total={pageState.postsTotal}
           activePage={currentPage}
           onPageChange={onPageChange}
