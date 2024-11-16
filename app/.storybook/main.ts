@@ -5,7 +5,6 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-links",
-    "@storybook/preview-api",
     "storybook-addon-remix-react-router",
     "storybook-addon-sass-postcss",
   ],
