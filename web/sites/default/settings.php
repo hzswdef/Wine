@@ -26,8 +26,8 @@
  * 'sites/default' will be used.
  *
  * For example, for a fictitious site installed at
- * https://www.drupal.org:8080/my-site/test/, the 'settings.php' file is searched
- * for in the following directories:
+ * https://www.drupal.org:8080/my-site/test/, the 'settings.php' file is
+ *   searched for in the following directories:
  *
  * - sites/8080.www.drupal.org.my-site.test
  * - sites/www.drupal.org.my-site.test
@@ -70,6 +70,7 @@
  *
  * One example of the simplest connection array is shown below. To use the
  * sample settings, copy and uncomment the code below between the @code and
+ *
  * @endcode lines and paste it after the $databases declaration. You will need
  * to replace the database username and password and possibly the host and port
  * with the appropriate credentials for your database system.
@@ -126,6 +127,7 @@ $databases = [];
  * traditionally referred to as master/slave in database server documentation).
  *
  * The general format for the $databases array is as follows:
+ *
  * @code
  * $databases['default']['default'] = $info_array;
  * $databases['default']['replica'][] = $info_array;
@@ -136,29 +138,32 @@ $databases = [];
  * In the above example, $info_array is an array of settings described above.
  * The first line sets a "default" database that has one primary database
  * (the second level default).  The second and third lines create an array
- * of potential replica databases.  Drupal will select one at random for a given
+ * of potential replica databases.  Drupal will select one at random for a
+ *   given
  * request as needed.  The fourth line creates a new database with a name of
  * "extra".
  *
  * For MySQL, MariaDB or equivalent databases the 'isolation_level' option can
  * be set. The recommended transaction isolation level for Drupal sites is
  * 'READ COMMITTED'. The 'REPEATABLE READ' option is supported but can result
- * in deadlocks, the other two options are 'READ UNCOMMITTED' and 'SERIALIZABLE'.
- * They are available but not supported; use them at your own risk. For more
- * info:
- * https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html
+ * in deadlocks, the other two options are 'READ UNCOMMITTED' and
+ *   'SERIALIZABLE'. They are available but not supported; use them at your own
+ *   risk. For more info:
+ *   https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html
  *
  * On your settings.php, change the isolation level:
  * @code
  * $databases['default']['default']['init_commands'] = [
- *   'isolation_level' => 'SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED',
+ *   'isolation_level' => 'SET SESSION TRANSACTION ISOLATION LEVEL READ
+ *   COMMITTED',
  * ];
  * @endcode
  *
  * You can optionally set a prefix for all database table names by using the
  * 'prefix' setting. If a prefix is specified, the table name will be prepended
  * with its value. Be sure to use valid database characters only, usually
- * alphanumeric and underscore. If no prefix is desired, do not set the 'prefix'
+ * alphanumeric and underscore. If no prefix is desired, do not set the
+ *   'prefix'
  * key or set its value to an empty string ''.
  *
  * For example, to have all database table prefixed with 'main_', set:
@@ -284,6 +289,7 @@ $settings['config_sync_directory'] = '../config/sync';
  * stored with backups of your database.
  *
  * Example:
+ *
  * @code
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
@@ -322,6 +328,7 @@ $settings['update_free_access'] = FALSE;
  * allow an insecure fallback to HTTP. Note that doing so will open your site up
  * to a potential man-in-the-middle attack. You should instead attempt to
  * resolve the issues before enabling this option.
+ *
  * @see https://www.drupal.org/docs/system-requirements/php-requirements#openssl
  * @see https://en.wikipedia.org/wiki/Man-in-the-middle_attack
  * @see \Drupal\update\UpdateFetcher
@@ -402,13 +409,21 @@ $settings['update_free_access'] = FALSE;
  * - \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  *
  * Note the default value of
+ *
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  * @endcode
  * is not secure by default. The value should be set to only the specific
  * headers the reverse proxy uses. For example:
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT |
+ *   \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * @endcode
  * This would trust the following headers:
  * - X_FORWARDED_FOR
@@ -424,7 +439,6 @@ $settings['update_free_access'] = FALSE;
  * @see \Symfony\Component\HttpFoundation\Request::setTrustedProxies
  */
 # $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
-
 
 /**
  * Page caching:
@@ -443,7 +457,6 @@ $settings['update_free_access'] = FALSE;
  * getting cached pages from the proxy.
  */
 # $settings['omit_vary_cookie'] = TRUE;
-
 
 /**
  * Cache TTL for client error (4xx) responses.
@@ -512,9 +525,10 @@ $settings['file_chmod_file'] = 0664;
 /**
  * Optimized assets path:
  *
- * A local file system path where optimized assets will be stored. This directory
- * must exist and be writable by Drupal. This directory must be relative to
- * the Drupal installation directory and be accessible over the web.
+ * A local file system path where optimized assets will be stored. This
+ * directory must exist and be writable by Drupal. This directory must be
+ * relative to the Drupal installation directory and be accessible over the
+ * web.
  */
 $settings['file_assets_path'] = 'sites/default/files';
 
@@ -738,6 +752,7 @@ $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/services.yml';
  * like to allow.
  *
  * For example:
+ *
  * @code
  * $settings['trusted_host_patterns'] = [
  *   '^www\.example\.com$',
@@ -764,12 +779,14 @@ $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/services.yml';
  *
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
-$settings['trusted_host_patterns'] = array(
+$settings['trusted_host_patterns'] = [
   '^wine\.ddev\.site$',
   '^.+\.wine\.ddev\.site$',
   '^localhost$',
   '^.+\.localhost$',
-);
+  '^wine-demo\.hzswdef\.cloud',
+  '^.+\.wine-demo\.hzswdef\.cloud',
+];
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
