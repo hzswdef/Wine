@@ -8,7 +8,7 @@ import { ElementType } from "domelementtype";
 import parse, {
   DOMNode,
   domToReact,
-  HTMLReactParserOptions,
+  HTMLReactParserOptions
 } from "html-react-parser";
 import { memo, useMemo } from "react";
 
@@ -43,7 +43,7 @@ const parserOptions: HTMLReactParserOptions = {
           return <CKEditorTagCode>{children}</CKEditorTagCode>;
       }
     }
-  },
+  }
 };
 
 const CKEditorBody = memo(({ body }: CKEditorProps) => {

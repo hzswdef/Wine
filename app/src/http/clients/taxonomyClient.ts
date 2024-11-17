@@ -8,7 +8,7 @@ abstract class TaxonomyClient extends Base {
     AxiosResponse<JsonApiResponse<TagsTaxonomy>>
   > {
     return await this._get<JsonApiResponse<TagsTaxonomy>>(
-      "/api/taxonomy_term/tags",
+      "/api/taxonomy_term/tags"
     );
   }
 }

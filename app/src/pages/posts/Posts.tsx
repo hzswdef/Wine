@@ -35,26 +35,26 @@ enum SortOptionsEnum {
   "asc" = "title",
   "desc" = "-title",
   "recent" = "-changed",
-  "oldest" = "created",
+  "oldest" = "created"
 }
 
 const sortOptions: InputItemDataType<string | number>[] = [
   {
     label: "Title ASC",
-    value: SortOptionsEnum.asc,
+    value: SortOptionsEnum.asc
   },
   {
     label: "Title Desc",
-    value: SortOptionsEnum.desc,
+    value: SortOptionsEnum.desc
   },
   {
     label: "Recent",
-    value: SortOptionsEnum.recent,
+    value: SortOptionsEnum.recent
   },
   {
     label: "Oldest",
-    value: SortOptionsEnum.oldest,
-  },
+    value: SortOptionsEnum.oldest
+  }
 ];
 
 const Posts = () => {
@@ -63,13 +63,13 @@ const Posts = () => {
   const {
     control,
     watch,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
       title: null,
       tags: null,
-      sort: null,
-    },
+      sort: null
+    }
   });
 
   const updateTitle = useTitle();
@@ -81,7 +81,7 @@ const Posts = () => {
     posts: [],
     postsTotal: 0,
     tags: [],
-    initialized: false,
+    initialized: false
   });
   const [error, setError] = useState<string | null>(null);
 
@@ -100,7 +100,7 @@ const Posts = () => {
 
       setCurrentPage(page);
     },
-    [navigate],
+    [navigate]
   );
 
   useEffect(() => {
@@ -122,8 +122,8 @@ const Posts = () => {
         params = {
           ...params,
           ...{
-            "filter[fulltext]": textValue,
-          },
+            "filter[fulltext]": textValue
+          }
         };
       }
     }
@@ -132,8 +132,8 @@ const Posts = () => {
       params = {
         ...params,
         ...{
-          "filter[tag]": searchTagsWatch,
-        },
+          "filter[tag]": searchTagsWatch
+        }
       };
     }
 
@@ -141,8 +141,8 @@ const Posts = () => {
       params = {
         ...params,
         ...{
-          sort: searchSortWatch,
-        },
+          sort: searchSortWatch
+        }
       };
     }
 
@@ -159,29 +159,36 @@ const Posts = () => {
         setPageState({
           ...pageState,
           posts: data.data,
-          postsTotal: data.meta.count,
+          postsTotal: data.meta.count
         });
       })
       .catch(() => {
         setError("Something went wrong. Please try again later.");
       });
-  }, [currentPage, searchTextDebounce, searchTagsWatch, searchSortWatch, pageState.initialized, onPageChange]);
+  }, [
+    currentPage,
+    searchTextDebounce,
+    searchTagsWatch,
+    searchSortWatch,
+    pageState.initialized,
+    onPageChange
+  ]);
 
   useEffect(() => {
     SubrequestsClient.getPostsAndAllTags()
       .then(response => {
         if (
-          response.data.requestPosts.headers.status[0] !== "200"
-          || response.data.requestTags.headers.status[0] !== "200"
+          response.data.requestPosts.headers.status[0] !== "200" ||
+          response.data.requestTags.headers.status[0] !== "200"
         ) {
           return setError("Something went wrong. Please try again later.");
         }
 
         const posts: JsonApiResponse<Post[]> = JSON.parse(
-          response.data.requestPosts.body,
+          response.data.requestPosts.body
         );
         const tags: JsonApiResponse<Taxonomy[]> = JSON.parse(
-          response.data.requestTags.body,
+          response.data.requestTags.body
         );
 
         setPageState({
@@ -190,10 +197,10 @@ const Posts = () => {
           tags: tags.data.map(tag => {
             return {
               label: tag.name,
-              value: tag.name.toLowerCase(),
+              value: tag.name.toLowerCase()
             };
           }),
-          initialized: true,
+          initialized: true
         });
       })
       .catch(() => {

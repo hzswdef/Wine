@@ -33,7 +33,7 @@ const Pagination = memo(
         onChangePage={onPageChange}
       />
     );
-  },
+  }
 );
 
 export default Pagination;

@@ -4,7 +4,7 @@ import {
   ForwardRefExoticComponent,
   memo,
   ReactNode,
-  RefAttributes,
+  RefAttributes
 } from "react";
 import { Popover, Whisper } from "rsuite";
 

@@ -33,7 +33,7 @@
       "@pages/*": ["./src/pages/*"],
       "@routes/*": ["./src/routes/*"]
     },
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", ".storybook"]

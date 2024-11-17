@@ -40,7 +40,7 @@ const Tag = () => {
         .then(response => {
           setPosts({
             posts: response.data.data,
-            total: response.data.meta.count,
+            total: response.data.meta.count
           });
         })
         .catch(() => {
@@ -55,7 +55,7 @@ const Tag = () => {
     if (anchorRef?.current) {
       anchorRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: "start"
       });
     }
   };

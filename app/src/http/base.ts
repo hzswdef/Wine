@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 enum RequestMethods {
   GET = "GET",
-  POST = "POST",
+  POST = "POST"
 }
 
 abstract class Base {
@@ -11,25 +11,25 @@ abstract class Base {
     baseURL: this.baseUrl,
     timeout: 5000,
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"
+    }
   });
 
   private static async request<T>(
     method: RequestMethods,
     endpoint: string,
     config: AxiosRequestConfig | null = null,
-    data?: object,
+    data?: object
   ): Promise<AxiosResponse<T>> {
     let request: AxiosRequestConfig = {
       method: method,
-      url: endpoint,
+      url: endpoint
     };
 
     if (config) {
       request = {
         ...request,
-        ...config,
+        ...config
       };
     }
 
@@ -52,7 +52,7 @@ abstract class Base {
 
   protected static async _get<T>(
     endpoint: string,
-    config: AxiosRequestConfig | null = null,
+    config: AxiosRequestConfig | null = null
   ): Promise<AxiosResponse<T>> {
     return await this.request<T>(RequestMethods.GET, endpoint, config);
   }
@@ -60,7 +60,7 @@ abstract class Base {
   protected static async _post<T>(
     endpoint: string,
     config: AxiosRequestConfig | null = null,
-    data: object,
+    data: object
   ): Promise<AxiosResponse<T>> {
     return await this.request<T>(RequestMethods.POST, endpoint, config, data);
   }

@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        default: "'Nunito', system-ui, Avenir, Helvetica, Arial, sans-serif",
+        default: "'Nunito', system-ui, Avenir, Helvetica, Arial, sans-serif"
       },
       fontSize: {
         xs: ".8rem",
@@ -15,7 +15,7 @@ export default {
         "2xl": "1.563rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
-        "5xl": "3.052rem",
+        "5xl": "3.052rem"
       },
       colors: {
         custom: {
@@ -23,8 +23,8 @@ export default {
           200: "#2B2D31",
           300: "#232428",
           400: "#1E1F22",
-          500: "#111214",
-        },
+          500: "#111214"
+        }
       },
       lineHeight: {
         11: "2.75rem",
@@ -32,25 +32,25 @@ export default {
         13: "3.25rem",
         14: "3.5rem",
         15: "3.75rem",
-        16: "4rem",
+        16: "4rem"
       },
       aspectRatio: {
-        banner: "20 / 7",
+        banner: "20 / 7"
       },
       keyframes: {
         "anchor-pulse": {
           "0%, 30%, 100%": {
-            color: "inherit",
+            color: "inherit"
           },
           "60%": {
-            color: "rgba(255,171,199,0.91)",
-          },
-        },
+            color: "rgba(255,171,199,0.91)"
+          }
+        }
       },
       animation: {
-        "anchor-pulse": "anchor-pulse 1.5s linear",
-      },
-    },
+        "anchor-pulse": "anchor-pulse 1.5s linear"
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };

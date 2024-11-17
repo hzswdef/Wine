@@ -8,34 +8,34 @@ const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 abstract class PostsClient extends Base {
   public static async getPosts(
     offset: number = 0,
-    params: object,
+    params: object
   ): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
     return await this._get<JsonApiResponse<Post[]>>("/api/index/posts", {
       params: {
         include: "tags",
         "page[limit]": pageLimit,
         "page[offset]": offset,
-        ...params,
-      },
+        ...params
+      }
     });
   }
 
   public static async getPostsByTag(
     tagName: string,
-    offset: number = 0,
+    offset: number = 0
   ): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
     return await this._get<JsonApiResponse<Post[]>>("/api/post", {
       params: {
         include: "tags",
         "filter[tags.name][value]": tagName,
         "page[limit]": pageLimit,
-        "page[offset]": offset,
-      },
+        "page[offset]": offset
+      }
     });
   }
 
   public static async getPost(
-    id: string,
+    id: string
   ): Promise<AxiosResponse<JsonApiResponse<Post>>> {
     return await this._get<JsonApiResponse<Post>>(`/api/post/${id}`);
   }

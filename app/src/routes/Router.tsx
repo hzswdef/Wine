@@ -9,7 +9,7 @@ import Tags from "@pages/tags/Tags";
 import {
   createBrowserRouter,
   RouteObject,
-  RouterProvider,
+  RouterProvider
 } from "react-router-dom";
 
 const Router = () => {
@@ -20,11 +20,11 @@ const Router = () => {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home />
         },
         {
           path: "/posts/:page?",
-          element: <Posts />,
+          element: <Posts />
         },
         {
           path: "/post/:id",
@@ -32,22 +32,22 @@ const Router = () => {
             <PostContextProvider>
               <Post />
             </PostContextProvider>
-          ),
+          )
         },
         {
           path: "/tags",
-          element: <Tags />,
+          element: <Tags />
         },
         {
           path: "/tag/:tag/:page?",
-          element: <Tag />,
+          element: <Tag />
         },
         {
           path: "*",
-          element: <NotFound />,
-        },
-      ],
-    },
+          element: <NotFound />
+        }
+      ]
+    }
   ];
 
   const router = createBrowserRouter(routes);

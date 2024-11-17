@@ -10,7 +10,7 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
+  useState
 } from "react";
 import { Heading } from "rsuite";
 import { useDebouncedCallback } from "use-debounce";
@@ -23,7 +23,7 @@ interface ParagraphProps {
 const ParagraphBase = ({
   children,
   paragraph,
-  anchorTitle,
+  anchorTitle
 }: PropsWithChildren<ParagraphProps>) => {
   // @TODO Move the anchors somewhere else cause that logic here result in multiple re-renders.
 
@@ -45,7 +45,7 @@ const ParagraphBase = ({
     if (anchorRef?.current) {
       anchorRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: "start"
       });
     }
 
@@ -59,18 +59,18 @@ const ParagraphBase = ({
         id: paragraph.id,
         title: anchorTitle,
         ref: anchorRef as MutableRefObject<HTMLDivElement>,
-        onClick: onAnchorClick,
+        onClick: onAnchorClick
       });
     }
   }, [anchorRef, anchorTitle, onAnchorClick, paragraph.id]);
 
   const paragraphTypeName = useMemo(
     () => paragraph.type.split(" ").pop(),
-    [paragraph.type],
+    [paragraph.type]
   );
   const mainClassNames = useMemo(
     () => clsx(`paragraph-${paragraphTypeName}`, "my-6 scroll-mt-48"),
-    [paragraphTypeName],
+    [paragraphTypeName]
   );
 
   // Do animation things on anchor click.
@@ -78,8 +78,8 @@ const ParagraphBase = ({
     setClassNames(
       clsx(
         "anchor-title w-full font-extrabold mb-2",
-        anchorIsClicked && "animate-anchor-pulse",
-      ),
+        anchorIsClicked && "animate-anchor-pulse"
+      )
     );
   }, [anchorIsClicked]);
 

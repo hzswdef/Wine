@@ -5,8 +5,9 @@ import { AxiosResponse } from "axios";
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
 abstract class SubrequestsClient extends Base {
-  public static async getPostsAndAllTags(
-  ): Promise<AxiosResponse<SubrequestsResponse>> {
+  public static async getPostsAndAllTags(): Promise<
+    AxiosResponse<SubrequestsResponse>
+  > {
     return await this._post<SubrequestsResponse>("/subrequests", {}, [
       {
         requestId: "requestPosts",
@@ -14,8 +15,8 @@ abstract class SubrequestsClient extends Base {
         action: "view",
         headers: {
           Accept: "application/vnd.api+json",
-          "Content-Type": "application/vnd.api+json",
-        },
+          "Content-Type": "application/vnd.api+json"
+        }
       },
       {
         requestId: "requestTags",
@@ -23,9 +24,9 @@ abstract class SubrequestsClient extends Base {
         action: "view",
         headers: {
           Accept: "application/vnd.api+json",
-          "Content-Type": "application/vnd.api+json",
-        },
-      },
+          "Content-Type": "application/vnd.api+json"
+        }
+      }
     ]);
   }
 }

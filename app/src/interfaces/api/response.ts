@@ -8,9 +8,9 @@ export interface JsonApiResponse<T> {
 export interface SubrequestsResponse {
   [key: string]: {
     headers: {
-      [key: string]: string[],
-      status: string[],
-    },
+      [key: string]: string[];
+      status: string[];
+    };
     body: string;
-  }
+  };
 }

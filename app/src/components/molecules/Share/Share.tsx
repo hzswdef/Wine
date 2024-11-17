@@ -7,7 +7,7 @@ import {
   TelegramIcon,
   TelegramShareButton,
   TwitterShareButton,
-  XIcon,
+  XIcon
 } from "react-share";
 import { Button, Heading } from "rsuite";
 

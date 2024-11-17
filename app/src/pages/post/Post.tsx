@@ -1,9 +1,10 @@
+import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody.tsx";
 import CodeParagraph from "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph.tsx";
 import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph.tsx";
 import SectionParagraph from "@components/molecules/Paragraphs/SectionParagraph/SectionParagraph.tsx";
 import TextParagraph from "@components/molecules/Paragraphs/TextParagraph/TextParagraph.tsx";
-import Tags from "@components/post/Tags";
 import Share from "@components/molecules/Share/Share.tsx";
+import Tags from "@components/post/Tags";
 import dateFormat from "@helpers/dateFormat";
 import usePostContext from "@hooks/usePostContext";
 import useTitle from "@hooks/useTitle";
@@ -16,7 +17,6 @@ import { clsx } from "clsx";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "rsuite";
-import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody.tsx";
 
 const Post = () => {
   const { id } = useParams();
@@ -74,7 +74,7 @@ const Post = () => {
       {anchors && (
         <div
           className={clsx(
-            "anchors sticky right-0 top-0 z-10 ml-[calc(100%+1.5rem)] hidden h-0 w-0 translate-x-full 2xl:block",
+            "anchors sticky right-0 top-0 z-10 ml-[calc(100%+1.5rem)] hidden h-0 w-0 translate-x-full 2xl:block"
           )}
         >
           <div className="anchors-title text-xl font-bold">Content</div>

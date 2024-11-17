@@ -15,9 +15,9 @@ const Sidebar = memo(() => {
     () =>
       clsx(
         "sidebar h-full flex flex-col gap-3 basis-64 bg-custom-400 p-4",
-        isMobile && (show ? "h-screen absolute z-10 w-full" : "hidden"),
+        isMobile && (show ? "h-screen absolute z-10 w-full" : "hidden")
       ),
-    [show],
+    [show]
   );
 
   return (

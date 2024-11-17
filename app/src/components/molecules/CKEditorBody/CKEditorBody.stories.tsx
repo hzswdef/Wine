@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Molecules/CKEditorBody",
-  component: CKEditorBody,
+  component: CKEditorBody
 } as Meta<typeof CKEditorBody>;
 
 type Story = StoryObj<typeof CKEditorBody>;
@@ -23,6 +23,6 @@ export const Example: Story = {
       "<ul><li>List 1</li><li>List 2</li><li>List 3</li></ul>" +
       "<ol><li>List 1</li><li>List 2</li><li>List 3</li></ol>" +
       "<h1>Heading 1</h1><h2>Heading 2</h2><h3>heading 3</h3>" +
-      "<h4>heading 4</h4><h5>heading 5</h5><p><strong>heading 6</strong></p>",
-  },
+      "<h4>heading 4</h4><h5>heading 5</h5><p><strong>heading 6</strong></p>"
+  }
 };

@@ -4,7 +4,7 @@ import type { Preview } from "@storybook/react";
 import { CustomProvider } from "rsuite";
 import {
   reactRouterParameters,
-  withRouter,
+  withRouter
 } from "storybook-addon-remix-react-router";
 
 export const preview: Preview = {
@@ -12,17 +12,17 @@ export const preview: Preview = {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i,
-      },
+        date: /Date$/i
+      }
     },
     reactRouter: reactRouterParameters({
       location: {
-        path: "/",
-      },
+        path: "/"
+      }
     }),
     backgrounds: {
-      default: "dark",
-    },
+      default: "dark"
+    }
   },
   decorators: [
     withRouter,
@@ -30,8 +30,8 @@ export const preview: Preview = {
       <CustomProvider theme="dark">
         <Story />
       </CustomProvider>
-    ),
-  ],
+    )
+  ]
 };
 
 export default preview;

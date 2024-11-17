@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Atoms/CKEditorTags/CKEditorTagOl",
-  component: CKEditorTagOl,
+  component: CKEditorTagOl
 } as Meta<typeof CKEditorTagOl>;
 
 type Story = StoryObj<typeof CKEditorTagOl>;
@@ -16,6 +16,6 @@ export const Example: Story = {
         <li>Item 2</li>
         <li>Item 3</li>
       </>
-    ),
-  },
+    )
+  }
 };

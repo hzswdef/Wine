@@ -10,18 +10,14 @@ export default {
   argTypes: {
     icon: {
       control: "select",
-      options: [
-        "calendar",
-        "share",
-        "add",
-      ],
+      options: ["calendar", "share", "add"],
       mapping: {
         calendar: CalenderDateIcon,
         share: ShareRoundIcon,
-        add: AddOutlineIcon,
+        add: AddOutlineIcon
       }
-    },
-  },
+    }
+  }
 } as Meta<typeof IconTextProps>;
 
 type Story = StoryObj<typeof IconTextProps>;
@@ -29,6 +25,6 @@ type Story = StoryObj<typeof IconTextProps>;
 export const Example: Story = {
   args: {
     text: "Text",
-    icon: CalenderDateIcon,
-  },
+    icon: CalenderDateIcon
+  }
 };

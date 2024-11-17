@@ -6,18 +6,18 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-links",
     "storybook-addon-remix-react-router",
-    "storybook-addon-sass-postcss",
+    "storybook-addon-sass-postcss"
   ],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {}
   },
   docs: {
-    autodocs: "tag",
+    autodocs: "tag"
   },
   core: {
-    disableWhatsNewNotifications: true,
-  },
+    disableWhatsNewNotifications: true
+  }
 };
 
 export default config;

@@ -1,6 +1,6 @@
 import PostContext, {
   Anchor,
-  PostContextInterface,
+  PostContextInterface
 } from "@contexts/PostContext";
 import { PropsWithChildren, useState } from "react";
 
@@ -10,13 +10,13 @@ const PostContextProvider = ({ children }: PropsWithChildren) => {
   const pushAnchor = (anchor: Anchor) => {
     setAnchors(prevState => ({
       ...prevState,
-      [anchor.id]: anchor,
+      [anchor.id]: anchor
     }));
   };
 
   const context: PostContextInterface = {
     anchors: anchors,
-    pushAnchor: pushAnchor,
+    pushAnchor: pushAnchor
   };
 
   return (

@@ -10,6 +10,5 @@
   "useTabs": false,
   "tabWidth": 2,
   "printWidth": 80,
-  "quoteProps": "as-needed",
-  "spaceInParens": false
+  "quoteProps": "as-needed"
 }

@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/react";
 
 export default {
-  title: "Atoms/CKEditorTags",
+  title: "Atoms/CKEditorTags"
 } as Meta;

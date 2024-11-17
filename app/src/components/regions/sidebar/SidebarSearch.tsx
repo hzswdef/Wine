@@ -10,11 +10,11 @@ const SidebarSearch = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
-      query: "",
-    },
+      query: ""
+    }
   });
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
@@ -28,7 +28,7 @@ const SidebarSearch = () => {
           name="query"
           control={control}
           rules={{
-            required: "Query is required",
+            required: "Query is required"
           }}
           render={({ field }) => (
             <InputGroup className="!w-auto" disabled>

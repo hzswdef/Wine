@@ -7,7 +7,7 @@ import { isMobile } from "react-device-detect";
 const Base = () => {
   const classNames = useMemo(
     () => clsx("flex h-full w-full bg-custom-100", isMobile && "flex-col"),
-    [],
+    []
   );
 
   return (

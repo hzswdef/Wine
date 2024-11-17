@@ -15,7 +15,7 @@ export default tseslint.config(
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: globals.browser
     },
     plugins: {
       "react-hooks": reactHooks,
@@ -23,13 +23,13 @@ export default tseslint.config(
       "@stylistic": stylistic,
       "simple-import-sort": simpleImportSort,
       "unused-imports": unusedImports,
-      "path-alias": pathAlias,
+      "path-alias": pathAlias
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": [
         "warn",
-        { allowConstantExport: true },
+        { allowConstantExport: true }
       ],
 
       // Style Rules
@@ -59,8 +59,8 @@ export default tseslint.config(
         "error",
         {
           VariableDeclarator: { array: false, object: true },
-          AssignmentExpression: { array: false, object: false },
-        },
+          AssignmentExpression: { array: false, object: false }
+        }
       ],
       "operator-assignment": ["error", "always"],
       "no-useless-computed-key": "error",
@@ -93,12 +93,12 @@ export default tseslint.config(
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
       "unused-imports/no-unused-imports": "error",
-      "path-alias/no-relative": "error",
-    },
+      "path-alias/no-relative": "error"
+    }
   },
   {
-    "files": ["**/*.stories.tsx"],
-    "rules": {
+    files: ["**/*.stories.tsx"],
+    rules: {
       "react-hooks/rules-of-hooks": "off"
     }
   }

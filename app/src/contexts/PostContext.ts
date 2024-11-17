@@ -16,7 +16,7 @@ export interface PostContextInterface {
 
 const PostContext = createContext<PostContextInterface>({
   anchors: {},
-  pushAnchor: () => {},
+  pushAnchor: () => {}
 });
 
 export default PostContext;

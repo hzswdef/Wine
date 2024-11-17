@@ -6,7 +6,7 @@ const Content = () => (
     <div
       className={clsx(
         "content-container w-full pb-16",
-        "xl:absolute xl:ml-[50%] xl:max-w-[800px] xl:-translate-x-[calc(50%+8rem)]",
+        "xl:absolute xl:ml-[50%] xl:max-w-[800px] xl:-translate-x-[calc(50%+8rem)]"
       )}
     >
       <Outlet />
