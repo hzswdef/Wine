@@ -1,5 +1,5 @@
 .post > .post-paragraphs {
-  p + p {
-    @apply mt-5;
-  }
+	p + p {
+		@apply mt-5;
+	}
 }

@@ -3,17 +3,17 @@ import Page from "@pages/Page";
 import { useEffect } from "react";
 
 const Home = () => {
-  const updateTitle = useTitle();
+	const updateTitle = useTitle();
 
-  useEffect(() => {
-    updateTitle("Home");
-  }, [updateTitle]);
+	useEffect(() => {
+		updateTitle("Home");
+	}, [updateTitle]);
 
-  return (
-    <Page page="home" title="Home">
-      Home
-    </Page>
-  );
+	return (
+		<Page page="home" title="Home">
+			Home
+		</Page>
+	);
 };
 
 export default Home;

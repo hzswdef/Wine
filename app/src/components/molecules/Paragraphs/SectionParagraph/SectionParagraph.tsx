@@ -6,24 +6,24 @@ import { SectionParagraph as ISectionParagraph } from "@interfaces/post/paragrap
 import { memo } from "react";
 
 interface SectionParagraphProps {
-  paragraph: ISectionParagraph;
+	paragraph: ISectionParagraph;
 }
 
 const SectionParagraph = memo(({ paragraph }: SectionParagraphProps) => (
-  <ParagraphBase paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
-    {paragraph.paragraphs.map(paragraph => {
-      switch (paragraph.type) {
-        case "Paragraph - Section":
-          return <SectionParagraph key={paragraph.id} paragraph={paragraph} />;
-        case "Paragraph - Text":
-          return <TextParagraph key={paragraph.id} paragraph={paragraph} />;
-        case "Paragraph - Code":
-          return <CodeParagraph key={paragraph.id} paragraph={paragraph} />;
-        case "Paragraph - Links":
-          return <LinksParagraph key={paragraph.id} paragraph={paragraph} />;
-      }
-    })}
-  </ParagraphBase>
+	<ParagraphBase paragraph={paragraph} anchorTitle={paragraph.anchor_title}>
+		{paragraph.paragraphs.map(paragraph => {
+			switch (paragraph.type) {
+				case "Paragraph - Section":
+					return <SectionParagraph key={paragraph.id} paragraph={paragraph} />;
+				case "Paragraph - Text":
+					return <TextParagraph key={paragraph.id} paragraph={paragraph} />;
+				case "Paragraph - Code":
+					return <CodeParagraph key={paragraph.id} paragraph={paragraph} />;
+				case "Paragraph - Links":
+					return <LinksParagraph key={paragraph.id} paragraph={paragraph} />;
+			}
+		})}
+	</ParagraphBase>
 ));
 
 export default SectionParagraph;

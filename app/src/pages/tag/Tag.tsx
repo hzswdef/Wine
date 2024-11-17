@@ -12,84 +12,84 @@ import { Message } from "rsuite";
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
 interface PostsState {
-  posts: Post[];
-  total: number;
+	posts: Post[];
+	total: number;
 }
 
 const Tag = () => {
-  const { tag, page } = useParams();
+	const { tag, page } = useParams();
 
-  const updateTitle = useTitle();
+	const updateTitle = useTitle();
 
-  const [posts, setPosts] = useState<PostsState | null>(null);
-  const [error, setError] = useState<string | null>(null);
+	const [posts, setPosts] = useState<PostsState | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
-  const anchorRef = createRef<HTMLDivElement>();
+	const anchorRef = createRef<HTMLDivElement>();
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const currentPage: number = page ? +page : 1;
+	const currentPage: number = page ? +page : 1;
 
-  useEffect(() => {
-    if (tag) {
-      updateTitle(tag.charAt(0).toUpperCase() + tag.slice(1));
+	useEffect(() => {
+		if (tag) {
+			updateTitle(tag.charAt(0).toUpperCase() + tag.slice(1));
 
-      const offset: number = (currentPage - 1) * pageLimit;
+			const offset: number = (currentPage - 1) * pageLimit;
 
-      PostsClient.getPostsByTag(tag, offset)
-        .then(response => {
-          setPosts({
-            posts: response.data.data,
-            total: response.data.meta.count
-          });
-        })
-        .catch(() => {
-          setError("Something went wrong. Please try again later.");
-        });
-    }
-  }, [tag, page, currentPage, updateTitle]);
+			PostsClient.getPostsByTag(tag, offset)
+				.then(response => {
+					setPosts({
+						posts: response.data.data,
+						total: response.data.meta.count
+					});
+				})
+				.catch(() => {
+					setError("Something went wrong. Please try again later.");
+				});
+		}
+	}, [tag, page, currentPage, updateTitle]);
 
-  const onPageChange = (page: number) => {
-    navigate(`/tag/${tag}/${page}`);
+	const onPageChange = (page: number) => {
+		navigate(`/tag/${tag}/${page}`);
 
-    if (anchorRef?.current) {
-      anchorRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  };
+		if (anchorRef?.current) {
+			anchorRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "start"
+			});
+		}
+	};
 
-  if (error) {
-    return (
-      <Message type="error" showIcon>
-        {error}
-      </Message>
-    );
-  }
+	if (error) {
+		return (
+			<Message type="error" showIcon>
+				{error}
+			</Message>
+		);
+	}
 
-  if (!posts) {
-    return <>Loading</>;
-  }
+	if (!posts) {
+		return <>Loading</>;
+	}
 
-  if (posts.posts.length === 0) {
-    return <NotFound />;
-  }
+	if (posts.posts.length === 0) {
+		return <NotFound />;
+	}
 
-  return (
-    <Page page="tag" title={`"${tag}" Tag`} className="capitalize">
-      <div ref={anchorRef} className="tag-anchor scroll-mt-48"></div>
+	return (
+		<Page page="tag" title={`"${tag}" Tag`} className="capitalize">
+			<div ref={anchorRef} className="tag-anchor scroll-mt-48"></div>
 
-      {posts.posts.length > 0 &&
-        posts.posts.map(post => <PostTeaser key={post.id} post={post} />)}
+			{posts.posts.length > 0 &&
+				posts.posts.map(post => <PostTeaser key={post.id} post={post} />)}
 
-      <Pagination
-        total={posts.total || 0}
-        activePage={currentPage}
-        onPageChange={onPageChange}
-      />
-    </Page>
-  );
+			<Pagination
+				total={posts.total || 0}
+				activePage={currentPage}
+				onPageChange={onPageChange}
+			/>
+		</Page>
+	);
 };
 
 export default Tag;

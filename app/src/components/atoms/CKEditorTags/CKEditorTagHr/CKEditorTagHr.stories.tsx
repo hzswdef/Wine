@@ -2,8 +2,8 @@ import CKEditorTagHr from "@components/atoms/CKEditorTags/CKEditorTagHr/CKEditor
 import { Meta, StoryObj } from "@storybook/react";
 
 export default {
-  title: "Atoms/CKEditorTags/CKEditorTagHr",
-  component: CKEditorTagHr
+	title: "Atoms/CKEditorTags/CKEditorTagHr",
+	component: CKEditorTagHr
 } as Meta<typeof CKEditorTagHr>;
 
 type Story = StoryObj<typeof CKEditorTagHr>;

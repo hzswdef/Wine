@@ -5,86 +5,86 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: "Nunito";
-    src:
-      local("Nunito"),
-      url(./assets/fonts/nunito/Nunito.ttf) format("woff2");
-  }
+	@font-face {
+		font-family: "Nunito";
+		src:
+			local("Nunito"),
+			url(./assets/fonts/nunito/Nunito.ttf) format("woff2");
+	}
 }
 
 :root {
-  @apply bg-custom-100 font-default font-normal leading-normal text-slate-100;
+	@apply bg-custom-100 font-default font-normal leading-normal text-slate-100;
 
-  color-scheme: light dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	color-scheme: light dark;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  @apply text-base text-white text-opacity-90;
+	@apply text-base text-white text-opacity-90;
 }
 
 html,
 body,
 body > #root {
-  @apply m-0 h-full w-full p-0 font-default;
+	@apply m-0 h-full w-full p-0 font-default;
 
-  img {
-    @apply select-none;
-  }
+	img {
+		@apply select-none;
+	}
 
-  textarea:focus,
-  input:focus {
-    @apply outline-none;
-  }
+	textarea:focus,
+	input:focus {
+		@apply outline-none;
+	}
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-  @apply w-1;
+	@apply w-1;
 }
 
 ::-webkit-scrollbar-track {
-  @apply border-4 bg-transparent;
-  -webkit-border-radius: 4px;
+	@apply border-4 bg-transparent;
+	-webkit-border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply border-4 bg-neutral-700;
-  -webkit-border-radius: 4px;
+	@apply border-4 bg-neutral-700;
+	-webkit-border-radius: 4px;
 }
 
 a {
-  @apply transition-colors duration-100 hover:text-blue-400 hover:no-underline;
+	@apply transition-colors duration-100 hover:text-blue-400 hover:no-underline;
 }
 
 svg {
-  @apply text-slate-100;
+	@apply text-slate-100;
 }
 
 h1 {
-  @apply text-3xl font-bold leading-10 xl:text-4xl xl:leading-16;
+	@apply text-3xl font-bold leading-10 xl:text-4xl xl:leading-16;
 }
 
 h2 {
-  @apply text-2xl font-bold leading-9 xl:text-3xl xl:leading-12;
+	@apply text-2xl font-bold leading-9 xl:text-3xl xl:leading-12;
 }
 
 h3 {
-  @apply text-xl font-bold leading-8 xl:text-2xl xl:leading-10;
+	@apply text-xl font-bold leading-8 xl:text-2xl xl:leading-10;
 }
 
 h4 {
-  @apply text-lg font-bold leading-6 xl:text-xl xl:leading-10;
+	@apply text-lg font-bold leading-6 xl:text-xl xl:leading-10;
 }
 
 h5 {
-  @apply text-base font-bold xl:text-lg xl:leading-8;
+	@apply text-base font-bold xl:text-lg xl:leading-8;
 }
 
 h6 {
-  @apply text-base font-bold xl:text-lg xl:leading-7;
+	@apply text-base font-bold xl:text-lg xl:leading-7;
 }
