@@ -1,7 +1,7 @@
-import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.tsx";
-import { LinksParagraph as ILinksParagraph } from "@interfaces/post/paragraphs.ts";
+import LinksParagraphItem from "@components/molecules/Paragraphs/LinksParagraph/children/LinksParagraphItem";
+import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase";
+import { LinksParagraph as ILinksParagraph } from "@interfaces/post/paragraphs";
 import { memo } from "react";
-import { Link } from "react-router-dom";
 
 interface LinksParagraphProps {
 	paragraph: ILinksParagraph;
@@ -10,18 +10,13 @@ interface LinksParagraphProps {
 const LinksParagraph = memo(({ paragraph }: LinksParagraphProps) => (
 	<ParagraphBase paragraph={paragraph} anchorTitle="Links">
 		<ul className="list-disc pl-8">
-			<li>
-				{paragraph.field_links.map(link => (
-					<Link
-						key={link.title}
-						to={link.uri}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						{link.title}
-					</Link>
-				))}
-			</li>
+			{paragraph.field_links.map(link => (
+				<LinksParagraphItem
+					key={link.title}
+					title={link.title}
+					uri={link.uri}
+				/>
+			))}
 		</ul>
 	</ParagraphBase>
 ));

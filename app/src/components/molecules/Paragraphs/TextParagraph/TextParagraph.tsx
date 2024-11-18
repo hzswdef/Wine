@@ -1,6 +1,6 @@
-import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody.tsx";
-import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.tsx";
-import { TextParagraph as ITextParagraph } from "@interfaces/post/paragraphs.ts";
+import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody";
+import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase";
+import { TextParagraph as ITextParagraph } from "@interfaces/post/paragraphs";
 import { memo } from "react";
 
 interface TextParagraphProps {

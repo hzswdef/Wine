@@ -1,9 +1,11 @@
 import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph";
 import { Meta, StoryObj } from "@storybook/react";
+import BasicRouter from "@storybook-local/decorators/BasicRouter/BasicRouter";
 
 export default {
 	title: "Molecules/Paragraphs/LinksParagraph",
-	component: LinksParagraph
+	component: LinksParagraph,
+	decorators: [BasicRouter]
 } as Meta<typeof LinksParagraph>;
 
 type Story = StoryObj<typeof LinksParagraph>;

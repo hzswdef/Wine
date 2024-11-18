@@ -1,8 +1,8 @@
-import CodeParagraph from "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph.tsx";
-import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph.tsx";
-import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.tsx";
-import TextParagraph from "@components/molecules/Paragraphs/TextParagraph/TextParagraph.tsx";
-import { SectionParagraph as ISectionParagraph } from "@interfaces/post/paragraphs.ts";
+import CodeParagraph from "@components/molecules/Paragraphs/CodeParagraph/CodeParagraph";
+import LinksParagraph from "@components/molecules/Paragraphs/LinksParagraph/LinksParagraph";
+import ParagraphBase from "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase";
+import TextParagraph from "@components/molecules/Paragraphs/TextParagraph/TextParagraph";
+import { SectionParagraph as ISectionParagraph } from "@interfaces/post/paragraphs";
 import { memo } from "react";
 
 interface SectionParagraphProps {

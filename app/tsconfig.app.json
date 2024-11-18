@@ -31,10 +31,11 @@
 			"@http/*": ["./src/http/*"],
 			"@interfaces/*": ["./src/interfaces/*"],
 			"@pages/*": ["./src/pages/*"],
-			"@routes/*": ["./src/routes/*"]
+			"@routes/*": ["./src/routes/*"],
+			"@storybook-local/*": ["./.storybook/*"]
 		},
 		"allowSyntheticDefaultImports": true
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", "dist", ".storybook"]
+	"include": ["src", ".storybook/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

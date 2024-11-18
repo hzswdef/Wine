@@ -1,9 +1,11 @@
 import CKEditorBody from "@components/molecules/CKEditorBody/CKEditorBody";
 import { Meta, StoryObj } from "@storybook/react";
+import BasicRouter from "@storybook-local/decorators/BasicRouter/BasicRouter";
 
 export default {
 	title: "Molecules/CKEditorBody",
-	component: CKEditorBody
+	component: CKEditorBody,
+	decorators: [BasicRouter]
 } as Meta<typeof CKEditorBody>;
 
 type Story = StoryObj<typeof CKEditorBody>;

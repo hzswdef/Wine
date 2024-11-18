@@ -1,11 +1,8 @@
-import "../src/index.scss";
+import "@/index.scss";
+import "@storybook-local/styles/storybook.scss";
 
-import type { Preview } from "@storybook/react";
-import { CustomProvider } from "rsuite";
-import {
-	reactRouterParameters,
-	withRouter
-} from "storybook-addon-remix-react-router";
+import { Preview } from "@storybook/react";
+import RSuiteProviderDecorator from "@storybook-local/decorators/RSuiteProviderDecorator/RSuiteProviderDecorator";
 
 export const preview: Preview = {
 	parameters: {
@@ -15,23 +12,11 @@ export const preview: Preview = {
 				date: /Date$/i
 			}
 		},
-		reactRouter: reactRouterParameters({
-			location: {
-				path: "/"
-			}
-		}),
 		backgrounds: {
 			default: "dark"
 		}
 	},
-	decorators: [
-		withRouter,
-		Story => (
-			<CustomProvider theme="dark">
-				<Story />
-			</CustomProvider>
-		)
-	]
+	decorators: [RSuiteProviderDecorator]
 };
 
 export default preview;

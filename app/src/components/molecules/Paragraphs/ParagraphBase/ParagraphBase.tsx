@@ -1,7 +1,7 @@
 import "@components/molecules/Paragraphs/ParagraphBase/ParagraphBase.scss";
 
-import usePostContext from "@hooks/usePostContext.ts";
-import { ParagraphsUnion } from "@interfaces/post/paragraphs.ts";
+import usePostContext from "@hooks/usePostContext";
+import { ParagraphsUnion } from "@interfaces/post/paragraphs";
 import { clsx } from "clsx";
 import {
 	MutableRefObject,
@@ -62,7 +62,7 @@ const ParagraphBase = ({
 				onClick: onAnchorClick
 			});
 		}
-	}, [anchorRef, anchorTitle, onAnchorClick, paragraph.id]);
+	}, [anchorRef, anchorTitle, onAnchorClick, paragraph.id, pushAnchor]);
 
 	const paragraphTypeName = useMemo(
 		() => paragraph.type.split(" ").pop(),
