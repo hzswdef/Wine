@@ -14,8 +14,10 @@ parameters:
       - "Accept"
       - "Content-Type"
     allowedOrigins:
+      - "http://localhost:6006"
       - "http://localhost:5173"
       - "http://localhost:4173"
+      - "hzswdef-wine.netlify.app"
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory

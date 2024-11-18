@@ -1,5 +1,5 @@
 export interface CKEditorBody {
-  format: string;
-  value: string;
-  processed: string;
+	format: string;
+	value: string;
+	processed: string;
 }
