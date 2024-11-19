@@ -1,37 +1,33 @@
 import FormField from "@components/molecules/FormField/FormField";
-import FormSelectField from "@components/molecules/FormSelectField/FormSelectField";
+import FormSelectPickerField from "@components/molecules/FormSelectPickerField/FormSelectPickerField";
 import { Meta } from "@storybook/react";
 import { Controller, FieldError, useForm } from "react-hook-form";
 
 export default {
-	title: "Molecules/FormSelectField",
-	component: FormSelectField
-} as Meta<typeof FormSelectField>;
+	title: "Molecules/FormSelectPickerField",
+	component: FormSelectPickerField
+} as Meta<typeof FormSelectPickerField>;
 
 interface FormData {
-	option: string | null;
+	option: string;
 }
 
 const exampleSelectOptions = [
 	{
-		label: "Frontend",
-		value: "frontend"
+		label: "Title ASC",
+		value: "title"
 	},
 	{
-		label: "Backend",
-		value: "backend"
+		label: "Title DESC",
+		value: "-title"
 	},
 	{
-		label: "Drupal",
-		value: "drupal"
+		label: "Recent",
+		value: "-changed"
 	},
 	{
-		label: "React",
-		value: "react"
-	},
-	{
-		label: "Vue",
-		value: "vue"
+		label: "Oldest",
+		value: "created"
 	},
 	{
 		label: "Option with Error",
@@ -70,7 +66,7 @@ export const Example = () => {
 						name="option"
 						control={control}
 						render={({ field }) => (
-							<FormSelectField<FormData>
+							<FormSelectPickerField<FormData>
 								data={exampleSelectOptions}
 								field={field}
 								placeholder="Options"

@@ -15,10 +15,10 @@ import { Meta, StoryObj } from "@storybook/react";
 import BasicRouter from "@storybook-local/decorators/BasicRouter/BasicRouter";
 
 export default {
-	title: "Atoms/Component",
-	component: Component,
-	// "BasicRouter" decorator.
-	decorators: [BasicRouter]
+  title: "Atoms/Component",
+  component: Component,
+  // "BasicRouter" decorator.
+  decorators: [BasicRouter]
 } as Meta<typeof Component>;
 
 type Story = StoryObj<typeof Component>;
@@ -41,12 +41,12 @@ import { Meta, StoryObj } from "@storybook/react";
 import AppRouter from "@storybook-local/decorators/AppRouter/AppRouter";
 
 export default {
-	title: "Pages/Page",
-	component: Page,
-	parameters: {
-		layout: "fullscreen"
-	},
-	decorators: [AppRouter]
+  title: "Pages/Page",
+  component: Page,
+  parameters: {
+    layout: "fullscreen"
+  },
+  decorators: [AppRouter]
 } as Meta<typeof Page>;
 
 type Story = StoryObj<typeof Page>;

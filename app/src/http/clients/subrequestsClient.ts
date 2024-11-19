@@ -8,26 +8,32 @@ abstract class SubrequestsClient extends Base {
 	public static async getPostsAndAllTags(): Promise<
 		AxiosResponse<SubrequestsResponse>
 	> {
-		return await this._post<SubrequestsResponse>("/subrequests", {}, [
-			{
-				requestId: "requestPosts",
-				uri: `/api/index/posts?include=tags&page[limit]=${pageLimit}&jsonapi_include=1,`,
-				action: "view",
-				headers: {
-					Accept: "application/vnd.api+json",
-					"Content-Type": "application/vnd.api+json"
+		return await this._post<SubrequestsResponse>({
+			endpoint: "/subrequests",
+			data: [
+				{
+					requestId: "requestPosts",
+					uri: `/api/index/posts?include=tags&page[limit]=${pageLimit}&jsonapi_include=1`,
+					action: "view",
+					headers: {
+						Accept: "application/vnd.api+json",
+						"Content-Type": "application/vnd.api+json"
+					}
+				},
+				{
+					requestId: "requestTags",
+					uri: "/api/taxonomy_term/tags?jsonapi_include=1",
+					action: "view",
+					headers: {
+						Accept: "application/vnd.api+json",
+						"Content-Type": "application/vnd.api+json"
+					}
 				}
-			},
-			{
-				requestId: "requestTags",
-				uri: "/api/taxonomy_term/tags?jsonapi_include=1",
-				action: "view",
-				headers: {
-					Accept: "application/vnd.api+json",
-					"Content-Type": "application/vnd.api+json"
-				}
+			],
+			requestOptions: {
+				format_json: true
 			}
-		]);
+		});
 	}
 }
 
