@@ -7,19 +7,19 @@ import {
 import { Form, InputGroup, InputPicker, InputPickerProps } from "rsuite";
 import { InputItemDataType } from "rsuite/InputPicker";
 
-interface FormFieldInputFieldProps<TFieldValues extends FieldValues>
+interface FormInputPickerFieldProps<TFieldValues extends FieldValues>
 	extends InputPickerProps {
 	data: InputItemDataType<string | number>[];
 	field: ControllerRenderProps<TFieldValues, Path<TFieldValues>>;
 	error?: FieldError | undefined;
 }
 
-function FormSelectField<TFieldValues extends FieldValues>({
+function FormInputPickerField<TFieldValues extends FieldValues>({
 	data,
 	field,
 	error,
 	...fieldProps
-}: FormFieldInputFieldProps<TFieldValues>) {
+}: FormInputPickerFieldProps<TFieldValues>) {
 	return (
 		<InputGroup className="!w-full">
 			<InputPicker
@@ -40,4 +40,4 @@ function FormSelectField<TFieldValues extends FieldValues>({
 	);
 }
 
-export default FormSelectField;
+export default FormInputPickerField;

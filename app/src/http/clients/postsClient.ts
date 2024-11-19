@@ -6,21 +6,13 @@ import { AxiosResponse } from "axios";
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
 abstract class PostsClient extends Base {
-	public static async getPosts(
-		offset: number = 0,
-		params: object
-	): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
-		return await this._get<JsonApiResponse<Post[]>>({
-			endpoint: "/api/post",
+	public static async getPost(
+		id: string
+	): Promise<AxiosResponse<JsonApiResponse<Post>>> {
+		return await this._get<JsonApiResponse<Post>>({
+			endpoint: `/api/post/${id}`,
 			requestOptions: {
-				jsonapi_include: true,
-			},
-			config: {
-				params: {
-					...params,
-					"page[limit]": pageLimit,
-					"page[offset]": offset
-				}
+				jsonapi_include: true
 			}
 		});
 	}
@@ -32,7 +24,7 @@ abstract class PostsClient extends Base {
 		return await this._get<JsonApiResponse<Post[]>>({
 			endpoint: "/api/post",
 			requestOptions: {
-				jsonapi_include: true,
+				jsonapi_include: true
 			},
 			config: {
 				params: {
@@ -45,13 +37,22 @@ abstract class PostsClient extends Base {
 		});
 	}
 
-	public static async getPost(
-		id: string
-	): Promise<AxiosResponse<JsonApiResponse<Post>>> {
-		return await this._get<JsonApiResponse<Post>>({
-			endpoint: `/api/post/${id}`,
+	public static async searchPosts(
+		offset: number = 0,
+		params: object
+	): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
+		return await this._get<JsonApiResponse<Post[]>>({
+			endpoint: "/api/index/posts",
 			requestOptions: {
-				jsonapi_include: true,
+				jsonapi_include: true
+			},
+			config: {
+				params: {
+					...params,
+					"page[limit]": pageLimit,
+					"page[offset]": offset,
+					include: "tags"
+				}
 			}
 		});
 	}

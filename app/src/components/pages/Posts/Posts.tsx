@@ -1,7 +1,8 @@
 import ErrorMessage from "@components/atoms/ErrorMessage/ErrorMessage";
 import FormField from "@components/molecules/FormField/FormField";
 import FormInputField from "@components/molecules/FormInputField/FormInputField";
-import FormSelectField from "@components/molecules/FormSelectField/FormSelectField";
+import FormInputPickerField from "@components/molecules/FormInputPickerField/FormInputPickerField";
+import FormSelectPickerField from "@components/molecules/FormSelectPickerField/FormSelectPickerField";
 import Pagination from "@components/molecules/Pagination/Pagination";
 import PostTeaser from "@components/organisms/PostTeaser/PostTeaser";
 import PageBase from "@components/pages/PageBase/PageBase";
@@ -11,7 +12,13 @@ import SubrequestsClient from "@http/clients/subrequestsClient";
 import { JsonApiResponse } from "@interfaces/api/response";
 import Post from "@interfaces/post/post";
 import { Taxonomy } from "@interfaces/taxonomy";
-import { useCallback, useEffect, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState
+} from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form } from "rsuite";
@@ -24,7 +31,6 @@ interface PageState {
 	posts: Post[];
 	postsTotal: number;
 	tags: Tag[];
-	initialized: boolean;
 }
 
 interface FormData {
@@ -63,7 +69,6 @@ const sortOptions: InputItemDataType<string | number>[] = [
 
 const Posts = () => {
 	const { page } = useParams();
-
 	const {
 		control,
 		watch,
@@ -76,20 +81,19 @@ const Posts = () => {
 		}
 	});
 
-	const updateTitle = useTitle();
-
-	const [searchTextDebounce] = useDebounce(watch("title", null), 500);
-
 	const [currentPage, setCurrentPage] = useState<number>(page ? +page : 1);
 	const [pageState, setPageState] = useState<PageState>({
 		posts: [],
 		postsTotal: 0,
-		tags: [],
-		initialized: false
+		tags: []
 	});
 	const [error, setError] = useState<string | null>(null);
+	const didInitialFetch = useRef<boolean>(false);
+
+	const [searchTextDebounce] = useDebounce(watch("title", null), 500);
 
 	const navigate = useNavigate();
+	const updateTitle = useTitle();
 
 	const searchTagsWatch = watch("tags", null);
 	const searchSortWatch = watch("sort", SortOptionsEnum.recent);
@@ -111,13 +115,13 @@ const Posts = () => {
 		updateTitle("Posts");
 	}, [updateTitle]);
 
-	useEffect(() => {
-		if (!pageState.initialized) {
+	// Search posts.
+	useLayoutEffect(() => {
+		if (!didInitialFetch.current) {
 			return;
 		}
 
 		let params = {};
-		let offset: number;
 
 		if (searchTextDebounce) {
 			const textValue = searchTextDebounce.trim();
@@ -150,15 +154,14 @@ const Posts = () => {
 			};
 		}
 
-		// If params were not specified.
+		let offset: number;
 		if (Object.keys(params).length === 0) {
 			offset = (currentPage - 1) * pageLimit;
 		} else {
 			offset = 0;
-			onPageChange(1);
 		}
 
-		PostsClient.getPosts(offset, params)
+		PostsClient.searchPosts(offset, params)
 			.then(({ data }) => {
 				setPageState(prevState => {
 					return {
@@ -176,25 +179,25 @@ const Posts = () => {
 		searchTextDebounce,
 		searchTagsWatch,
 		searchSortWatch,
-		pageState.initialized,
 		onPageChange
 	]);
 
+	// Initial Posts & Tags fetch.
 	useEffect(() => {
 		SubrequestsClient.getPostsAndAllTags()
-			.then(response => {
+			.then(({ data }) => {
 				if (
-					response.data.requestPosts.headers.status[0] !== "200" ||
-					response.data.requestTags.headers.status[0] !== "200"
+					data.requestPosts.headers.status[0] !== "200" ||
+					data.requestTags.headers.status[0] !== "200"
 				) {
 					return setError("Something went wrong. Please try again later.");
 				}
 
 				const posts: JsonApiResponse<Post[]> = JSON.parse(
-					response.data.requestPosts.body
+					data.requestPosts.body
 				);
 				const tags: JsonApiResponse<Taxonomy[]> = JSON.parse(
-					response.data.requestTags.body
+					data.requestTags.body
 				);
 
 				setPageState({
@@ -205,9 +208,9 @@ const Posts = () => {
 							label: tag.name,
 							value: tag.name.toLowerCase()
 						};
-					}),
-					initialized: true
+					})
 				});
+				didInitialFetch.current = true;
 			})
 			.catch(() => {
 				setError("Something went wrong. Please try again later.");
@@ -218,7 +221,7 @@ const Posts = () => {
 		return <ErrorMessage>{error}</ErrorMessage>;
 	}
 
-	if (!pageState.initialized) {
+	if (!didInitialFetch.current) {
 		return <>Loading</>;
 	}
 
@@ -252,7 +255,7 @@ const Posts = () => {
 								name="tags"
 								control={control}
 								render={({ field }) => (
-									<FormSelectField<FormData>
+									<FormInputPickerField<FormData>
 										data={pageState.tags}
 										field={field}
 										placeholder="Tags"
@@ -270,9 +273,10 @@ const Posts = () => {
 								name="sort"
 								control={control}
 								render={({ field }) => (
-									<FormSelectField<FormData>
+									<FormSelectPickerField<FormData>
 										data={sortOptions}
 										field={field}
+										searchable={false}
 										placeholder="Sort by"
 									/>
 								)}
