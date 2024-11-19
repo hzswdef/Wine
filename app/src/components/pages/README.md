@@ -13,12 +13,12 @@ import { Meta, StoryObj } from "@storybook/react";
 import AppRouter from "@storybook-local/decorators/AppRouter/AppRouter";
 
 export default {
-	title: "Pages/Page",
-	component: Page,
-	parameters: {
-		layout: "fullscreen"
-	},
-	decorators: [AppRouter]
+  title: "Pages/Page",
+  component: Page,
+  parameters: {
+    layout: "fullscreen"
+  },
+  decorators: [AppRouter]
 } as Meta<typeof Page>;
 
 type Story = StoryObj<typeof Page>;
