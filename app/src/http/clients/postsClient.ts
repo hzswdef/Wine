@@ -10,12 +10,17 @@ abstract class PostsClient extends Base {
 		offset: number = 0,
 		params: object
 	): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
-		return await this._get<JsonApiResponse<Post[]>>("/api/index/posts", {
-			params: {
-				include: "tags",
-				"page[limit]": pageLimit,
-				"page[offset]": offset,
-				...params
+		return await this._get<JsonApiResponse<Post[]>>({
+			endpoint: "/api/post",
+			requestOptions: {
+				jsonapi_include: true,
+			},
+			config: {
+				params: {
+					...params,
+					"page[limit]": pageLimit,
+					"page[offset]": offset
+				}
 			}
 		});
 	}
@@ -24,12 +29,18 @@ abstract class PostsClient extends Base {
 		tagName: string,
 		offset: number = 0
 	): Promise<AxiosResponse<JsonApiResponse<Post[]>>> {
-		return await this._get<JsonApiResponse<Post[]>>("/api/post", {
-			params: {
-				include: "tags",
-				"filter[tags.name][value]": tagName,
-				"page[limit]": pageLimit,
-				"page[offset]": offset
+		return await this._get<JsonApiResponse<Post[]>>({
+			endpoint: "/api/post",
+			requestOptions: {
+				jsonapi_include: true,
+			},
+			config: {
+				params: {
+					include: "tags",
+					"filter[tags.name][value]": tagName,
+					"page[limit]": pageLimit,
+					"page[offset]": offset
+				}
 			}
 		});
 	}
@@ -37,7 +48,12 @@ abstract class PostsClient extends Base {
 	public static async getPost(
 		id: string
 	): Promise<AxiosResponse<JsonApiResponse<Post>>> {
-		return await this._get<JsonApiResponse<Post>>(`/api/post/${id}`);
+		return await this._get<JsonApiResponse<Post>>({
+			endpoint: `/api/post/${id}`,
+			requestOptions: {
+				jsonapi_include: true,
+			}
+		});
 	}
 }
 
