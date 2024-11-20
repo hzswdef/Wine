@@ -1,6 +1,7 @@
 # Storybook
 
-Before you start making your custom components, check the specific things for this project below.
+> [!IMPORTANT]
+> Before you start making your custom components, check the specific things for this project below.
 
 ### Components
 
