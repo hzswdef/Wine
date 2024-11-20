@@ -1,0 +1,19 @@
+.animated--content-blur {
+	div[class^="animated--content-blur-"],
+	div[class*=", animated--content-blur-"] {
+		@apply transition-all duration-200;
+	}
+
+	.animated--content-blur-appear,
+	.animated--content-blur-enter,
+	.animated--content-blur-enter-active,
+	.animated--content-blur-enter-done,
+	.animated--content-blur-exit,
+	.animated--content-blur-exit-active {
+		@apply blur-sm;
+	}
+
+	.animated--content-blur-exit-done {
+		@apply blur-0;
+	}
+}
