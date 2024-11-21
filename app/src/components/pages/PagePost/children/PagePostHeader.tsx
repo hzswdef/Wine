@@ -4,36 +4,59 @@ import dateFormat from "@helpers/dateFormat";
 import Post from "@interfaces/post/post";
 import CalenderDateIcon from "@rsuite/icons/CalenderDate";
 import { memo, useMemo } from "react";
+import { Placeholder } from "rsuite";
 
 interface PostPageHeaderProps {
-	summary: Post["summary"]["processed"];
-	created: Post["created"];
+	placeholder: boolean;
+	summary?: Post["summary"]["processed"];
+	created?: Post["created"];
 }
+const PagePostHeader = memo(
+	({ placeholder, summary, created }: PostPageHeaderProps) => {
+		const dateNumFormat = useMemo(() => {
+			if (!placeholder) {
+				return dateFormat(created, "MM/DD/YYYY");
+			}
 
-const PagePostHeader = memo(({ summary, created }: PostPageHeaderProps) => {
-	const dateNumFormat = useMemo(() => {
-		return dateFormat(created, "MM/DD/YYYY");
-	}, [created]);
+			return "";
+		}, [created, placeholder]);
 
-	const dateStringFormat = useMemo(() => {
-		return dateFormat(created, "MMMM D, YYYY");
-	}, [created]);
+		const dateStringFormat = useMemo(() => {
+			if (!placeholder) {
+				return dateFormat(created, "MMMM D, YYYY");
+			}
 
-	return (
-		<div className="post-header">
-			<div className="post-summary text my-4">
-				<CKEditorBody body={summary} />
+			return "";
+		}, [created, placeholder]);
+
+		return (
+			<div className="post-header">
+				<div className="post-summary text my-4">
+					{placeholder && (
+						<>
+							<Placeholder.Paragraph rows={3} />
+						</>
+					)}
+
+					{!placeholder && summary && <CKEditorBody body={summary} />}
+				</div>
+
+				<div className="post-info">
+					{placeholder && (
+						<Placeholder.Paragraph rows={1} rowHeight={8} className="w-24" />
+					)}
+
+					{!placeholder && (
+						<PostInfoItem
+							text={dateNumFormat}
+							popover={<>{dateStringFormat}</>}
+							icon={CalenderDateIcon}
+						/>
+					)}
+				</div>
 			</div>
-
-			<div className="post-info">
-				<PostInfoItem
-					text={dateNumFormat}
-					popover={<>{dateStringFormat}</>}
-					icon={CalenderDateIcon}
-				/>
-			</div>
-		</div>
-	);
-});
+		);
+	}
+);
 
 export default PagePostHeader;
