@@ -10,8 +10,8 @@ const PageHome = () => {
 	}, [updateTitle]);
 
 	return (
-		<PageBase page="home" title="PageHome">
-			PageHome
+		<PageBase page="home" title="Home">
+			Home
 		</PageBase>
 	);
 };

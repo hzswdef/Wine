@@ -1,8 +1,8 @@
 import "@components/pages/PageTags/PageTags.scss";
 
-import ErrorMessage from "@components/atoms/ErrorMessage/ErrorMessage";
 import PageBase from "@components/pages/PageBase/PageBase";
-import PageTagsItem from "@components/pages/PageTags/children/PageTagsItem";
+import PageTagsContent from "@components/pages/PageTags/children/PageTagsContent";
+import PageTagsHeader from "@components/pages/PageTags/children/PageTagsHeader";
 import useTitle from "@hooks/useTitle";
 import TaxonomyClient from "@http/clients/taxonomyClient";
 import { TagsTaxonomy } from "@interfaces/taxonomy";
@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 const PageTags = () => {
 	const updateTitle = useTitle();
 
-	const [tags, setTags] = useState<TagsTaxonomy | null>(null);
-	const [error, setError] = useState<string | null>(null);
+	const [tags, setTags] = useState<TagsTaxonomy | undefined>();
+	const [error, setError] = useState<string | undefined>();
 
 	useEffect(() => {
 		updateTitle("Tags");
@@ -29,16 +29,9 @@ const PageTags = () => {
 	}, []);
 
 	return (
-		<PageBase page="tags" title="PageTags">
-			{error && <ErrorMessage>{error}</ErrorMessage>}
-
-			{tags && (
-				<div className="tags-items flex flex-wrap gap-4">
-					{tags.map(tag => (
-						<PageTagsItem key={tag.id} tag={tag} />
-					))}
-				</div>
-			)}
+		<PageBase page="tags" title="Tags">
+			<PageTagsHeader error={error} />
+			<PageTagsContent tags={tags} />
 		</PageBase>
 	);
 };

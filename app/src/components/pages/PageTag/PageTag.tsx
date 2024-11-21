@@ -10,7 +10,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const pageLimit: number = +import.meta.env.VITE_DRUPAL_PAGE_LIMIT;
 
-interface PostsState {
+export interface PageTagState {
+	loading: boolean;
 	posts: Post[];
 	total: number;
 }
@@ -20,8 +21,12 @@ const PageTag = () => {
 
 	const updateTitle = useTitle();
 
-	const [posts, setPosts] = useState<PostsState | null>(null);
-	const [error, setError] = useState<string | null>(null);
+	const [tagPageState, setTagPageState] = useState<PageTagState>({
+		loading: true,
+		posts: [],
+		total: 0
+	});
+	const [error, setError] = useState<string | undefined>();
 
 	const anchorRef = createRef<HTMLDivElement>();
 
@@ -40,9 +45,11 @@ const PageTag = () => {
 
 			const offset: number = (currentPage - 1) * pageLimit;
 
+			// @TODO Display error when specified unknown tag.
 			PostsClient.getPostsByTag(tag, offset)
 				.then(response => {
-					setPosts({
+					setTagPageState({
+						loading: false,
 						posts: response.data.data,
 						total: response.data.meta.count
 					});
@@ -51,9 +58,16 @@ const PageTag = () => {
 					setError("Something went wrong. Please try again later.");
 				});
 		}
-	}, [tag, page, currentPage, updateTitle]);
+	}, [currentPage, tag, updateTitle]);
 
 	const onPageChange = (page: number) => {
+		setTagPageState(prevState => {
+			return {
+				...prevState,
+				loading: true
+			};
+		});
+
 		navigate(`/tag/${tag}/${page}`);
 
 		if (anchorRef?.current) {
@@ -64,20 +78,17 @@ const PageTag = () => {
 		}
 	};
 
-	if (error) {
-		return <ErrorMessage>{error}</ErrorMessage>;
-	}
-
-	if (!posts) {
-		return <>Loading</>;
-	}
-
 	return (
-		<PageBase page="tag" title={`"${tag}" Tag`} className="capitalize">
+		<PageBase page="tag" title={<>{tag} - Tag</>} className="capitalize">
+			{error && <ErrorMessage>{error}</ErrorMessage>}
+
 			<div ref={anchorRef} className="tag-anchor scroll-mt-48"></div>
-			<PageTagContent posts={posts.posts} />
+			<PageTagContent
+				posts={tagPageState.posts}
+				loading={tagPageState.loading}
+			/>
 			<PageTagFooter
-				paginationTotal={posts.total}
+				paginationTotal={tagPageState.total}
 				paginationActivePage={currentPage}
 				paginationOnPageChange={onPageChange}
 			/>
