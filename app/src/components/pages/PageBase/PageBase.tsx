@@ -1,27 +1,27 @@
 import { clsx } from "clsx";
-import { PropsWithChildren, useMemo } from "react";
+import { PropsWithChildren, ReactNode, useMemo } from "react";
 import { Heading } from "rsuite";
 
 interface PageProps extends PropsWithChildren {
 	page: string;
-	title?: string;
+	title?: ReactNode;
 	className?: string;
 }
 
-const PageBase = ({ children, page, ...rest }: PageProps) => {
-	const className = useMemo(() => {
-		if (rest?.className) {
-			return clsx(`page-${page}`, rest.className);
+const PageBase = ({ children, page, title, className }: PageProps) => {
+	const _className = useMemo(() => {
+		if (className) {
+			return clsx(`page-${page}`, className);
 		} else {
 			return `page-${page}`;
 		}
-	}, [page, rest.className]);
+	}, [page, className]);
 
 	return (
-		<div className={className}>
-			{rest?.title && (
+		<div className={_className}>
+			{title && (
 				<Heading level={1} className="mb-8 font-bold xl:text-5xl">
-					{rest.title}
+					{title}
 				</Heading>
 			)}
 

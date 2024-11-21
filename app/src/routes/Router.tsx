@@ -1,9 +1,9 @@
-import Home from "@components/pages/Home/Home";
-import NotFound from "@components/pages/NotFound/NotFound";
-import Post from "@components/pages/Post/Post";
-import Posts from "@components/pages/Posts/Posts";
-import Tag from "@components/pages/Tag/Tag";
-import Tags from "@components/pages/Tags/Tags";
+import PageHome from "@components/pages/PageHome/PageHome";
+import PageNotFound from "@components/pages/PageNotFound/PageNotFound";
+import PagePost from "@components/pages/PagePost/PagePost";
+import PagePosts from "@components/pages/PagePosts/PagePosts";
+import PageTag from "@components/pages/PageTag/PageTag";
+import PageTags from "@components/pages/PageTags/PageTags";
 import Layout from "@components/templates/Layout/Layout";
 import PostContextProvider from "@contexts/PostContext/PostContextProvider";
 import {
@@ -20,39 +20,54 @@ const Router = () => {
 			children: [
 				{
 					path: "/",
-					element: <Home />
+					element: <PageHome />
 				},
 				{
 					path: "/posts/:page?",
-					element: <Posts />
+					element: <PagePosts />
 				},
 				{
 					path: "/post/:id",
 					element: (
 						<PostContextProvider>
-							<Post />
+							<PagePost />
 						</PostContextProvider>
 					)
 				},
 				{
 					path: "/tags",
-					element: <Tags />
+					element: <PageTags />
 				},
 				{
 					path: "/tag/:tag/:page?",
-					element: <Tag />
+					element: <PageTag />
 				},
 				{
 					path: "*",
-					element: <NotFound />
+					element: <PageNotFound />
 				}
 			]
 		}
 	];
 
-	const router = createBrowserRouter(routes);
+	const router = createBrowserRouter(routes, {
+		future: {
+			v7_relativeSplatPath: true,
+			v7_fetcherPersist: true,
+			v7_normalizeFormMethod: true,
+			v7_partialHydration: true,
+			v7_skipActionErrorRevalidation: true
+		}
+	});
 
-	return <RouterProvider router={router} />;
+	return (
+		<RouterProvider
+			router={router}
+			future={{
+				v7_startTransition: true
+			}}
+		/>
+	);
 };
 
 export default Router;

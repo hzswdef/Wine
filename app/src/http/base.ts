@@ -35,7 +35,7 @@ abstract class Base {
 		.VITE_BACKEND_BASE_URL;
 	private static readonly http: AxiosInstance = axios.create({
 		baseURL: this.baseUrl,
-		timeout: 5000,
+		timeout: 32000,
 		headers: {
 			"Content-Type": "application/json"
 		}
